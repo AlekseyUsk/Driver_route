@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8C9EFF"
+    android:backgroundTint="#82B1FF"
+    tools:context=".DataEntryFragment">
+
+    <Button
+        android:id="@+id/button_save_add_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#DA2E2E"
+        android:text="сохранить данные"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/card_view_data"
+        app:layout_constraintHorizontal_bias="0.429"
+        app:layout_constraintStart_toStartOf="@+id/card_view_data"
+        app:layout_constraintTop_toBottomOf="@+id/card_view_data" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFF980">
+
+            <TextView
+                android:id="@+id/final_hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="всего часов"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/working_hours_per_trip"
+                app:layout_constraintTop_toTopOf="@+id/working_hours_per_trip" />
+
+            <TextView
+                android:id="@+id/working_hours_per_trip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="часы за поездку"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/end_of_work"
+                app:layout_constraintTop_toBottomOf="@+id/end_of_work" />
+
+            <EditText
+                android:id="@+id/end_of_work"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="введите окончание работы"
+                app:layout_constraintStart_toStartOf="@+id/em"
+                app:layout_constraintTop_toBottomOf="@+id/em" />
+
+            <EditText
+                android:id="@+id/em"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="введите номер ЭМ"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/route"
+                app:layout_constraintStart_toStartOf="@+id/route"
+                app:layout_constraintTop_toBottomOf="@+id/route" />
+
+            <EditText
+                android:id="@+id/route"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="введите плечо"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="@+id/assistant"
+                app:layout_constraintTop_toBottomOf="@+id/assistant" />
+
+            <EditText
+                android:id="@+id/assistant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="помошник машиниста"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="@+id/time"
+                app:layout_constraintTop_toBottomOf="@+id/time" />
+
+            <EditText
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="введите время явки"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="@+id/date"
+                app:layout_constraintTop_toBottomOf="@+id/date" />
+
+            <TextView
+                android:id="@+id/turnout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="ЯВКА"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="введите дату явки"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="@+id/turnout"
+                app:layout_constraintTop_toBottomOf="@+id/turnout" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
