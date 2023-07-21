@@ -11,11 +11,9 @@ import com.bignerdranch.android.driversroute.model.TripModel
 
 class AdapterRV : ListAdapter<TripModel, AdapterRV.Holder>(Comparator()) {
 
-    private val myList = listOf<TripModel>()
-
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
 
-        private val binding = ItemCardTripBinding.bind(view)
+        val binding = ItemCardTripBinding.bind(view)
 
         fun bind(item: TripModel) = with(binding) {
             turnoutItem.text = item.time
@@ -48,5 +46,4 @@ class AdapterRV : ListAdapter<TripModel, AdapterRV.Holder>(Comparator()) {
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.bind(getItem(position))
     }
-
 }
