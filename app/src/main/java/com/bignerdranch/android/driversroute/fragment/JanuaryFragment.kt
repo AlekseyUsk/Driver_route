@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
+import com.bignerdranch.android.driversroute.MainViewModel
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentJanuaryBinding
 import com.bignerdranch.android.driversroute.model.TripModel
@@ -15,6 +18,7 @@ import com.bignerdranch.android.driversroute.model.TripModel
 class JanuaryFragment : Fragment() {
 
     private lateinit var binding: FragmentJanuaryBinding
+    private val viewModel: MainViewModel by activityViewModels()
     private lateinit var adapter: AdapterRV
 
     override fun onCreateView(
@@ -30,6 +34,7 @@ class JanuaryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRcView()
+
     }
 
     private fun initRcView() = with(binding) {
@@ -42,7 +47,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Московка",
-                63546,
+                "63546",
                 "7:40",
                 "8:40",
                 "156:35"
@@ -51,7 +56,7 @@ class JanuaryFragment : Fragment() {
                 "22:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Черепаново",
-                63567,
+                "63567",
                 "9:30",
                 "11:40",
                 "167:35"
@@ -60,7 +65,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Тайга",
-                63548,
+                "63548",
                 "7:40",
                 "7:10",
                 "180:39"
@@ -69,7 +74,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -78,7 +83,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "5666",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -87,7 +92,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -96,7 +101,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -105,7 +110,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -114,7 +119,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -123,7 +128,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -132,7 +137,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -141,7 +146,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -150,7 +155,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -159,7 +164,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -168,7 +173,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -177,7 +182,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -186,7 +191,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -195,7 +200,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -204,7 +209,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"
@@ -213,7 +218,7 @@ class JanuaryFragment : Fragment() {
                 "23:00",
                 "Ивлев Данила табельный - 29170",
                 "Инская - Обь",
-                63589,
+                "63589",
                 "5:46",
                 "8:40",
                 "200:35"

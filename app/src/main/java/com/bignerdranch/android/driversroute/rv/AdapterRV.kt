@@ -13,17 +13,17 @@ class AdapterRV : ListAdapter<TripModel, AdapterRV.Holder>(Comparator()) {
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val binding = ItemCardTripBinding.bind(view)
+        private val binding = ItemCardTripBinding.bind(view)
 
         fun bind(item: TripModel) = with(binding) {
             turnoutItem.text = item.time
             dateItem.text = item.date
             assistantItem.text = item.assistant
             routeItem.text = item.route
-            emItem.text = item.em.toString()
+            emItem.text = item.em
             endOfWorkItem.text = item.endOfWork
             workingHoursPerTripItem.text = item.working
-            finalHoursItem.text = item.final
+            finalHoursItem.text = item.final_hours
         }
     }
 

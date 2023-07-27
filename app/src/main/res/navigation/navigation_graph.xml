@@ -18,5 +18,16 @@
         android:id="@+id/dataEntryFragment"
         android:name="com.bignerdranch.android.driversroute.DataEntryFragment"
         android:label="fragment_data_entry"
-        tools:layout="@layout/fragment_data_entry" />
+        tools:layout="@layout/fragment_data_entry" >
+        <action
+            android:id="@+id/action_dataEntryFragment_to_februaryFragment"
+            app:destination="@id/februaryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/februaryFragment"
+        android:name="com.bignerdranch.android.driversroute.fragment.FebruaryFragment"
+        android:label="FebruaryFragment" >
+        <argument
+            android:name="updateData" />
+    </fragment>
 </navigation>

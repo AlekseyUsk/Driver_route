@@ -41,18 +41,32 @@
             android:backgroundTint="@color/card_color">
 
             <TextView
+                android:id="@+id/current_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="12:45"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@+id/current_data"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/hours_worked"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="88 часов"
-                android:textColor="@color/black"
+                android:textColor="#EF0909"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/current_data"
+                app:layout_constraintHorizontal_bias="0.666"
                 app:layout_constraintStart_toStartOf="@+id/current_data"
-                app:layout_constraintTop_toBottomOf="@+id/current_data" />
+                app:layout_constraintTop_toBottomOf="@+id/current_time"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/current_data"
@@ -60,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="20/01/23 12:45"
+                android:text="20/01/23"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

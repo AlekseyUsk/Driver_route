@@ -5,8 +5,8 @@ data class TripModel(
     val time: String,
     val assistant: String,
     val route: String,
-    val em: Int,
+    val em: String,
     val endOfWork: String,
     val working: String,
-    val final: String
+    val final_hours: String
 )

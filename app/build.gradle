@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+
+    //Safe Args
+    id 'androidx.navigation.safeargs' version '2.4.2' apply false
 }
 
 android {
@@ -33,6 +36,8 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    // Safe Args
+    apply plugin: 'androidx.navigation.safeargs'
 }
 
 dependencies {

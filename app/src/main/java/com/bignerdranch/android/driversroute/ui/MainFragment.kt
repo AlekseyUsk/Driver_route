@@ -12,6 +12,8 @@ import com.bignerdranch.android.driversroute.databinding.FragmentMainBinding
 import com.bignerdranch.android.driversroute.fragment.*
 import com.bignerdranch.android.driversroute.viewpager2.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainFragment : Fragment() {
@@ -47,6 +49,9 @@ class MainFragment : Fragment() {
 
         onClick()
         init()
+
+        binding.currentData.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
+        binding.currentTime.text = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
     }
 
     private fun init() = with(binding) {

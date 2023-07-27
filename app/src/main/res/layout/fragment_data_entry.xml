@@ -47,11 +47,11 @@
                 android:textColorHint="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/working_hours_per_trip"
-                app:layout_constraintTop_toTopOf="@+id/working_hours_per_trip" />
+                app:layout_constraintStart_toEndOf="@+id/working"
+                app:layout_constraintTop_toTopOf="@+id/working" />
 
             <TextView
-                android:id="@+id/working_hours_per_trip"
+                android:id="@+id/working"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
