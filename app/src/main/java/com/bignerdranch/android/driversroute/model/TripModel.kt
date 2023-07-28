@@ -1,12 +1,12 @@
 package com.bignerdranch.android.driversroute.model
 
 data class TripModel(
-    val date: String,
-    val time: String,
-    val assistant: String,
-    val route: String,
-    val em: String,
-    val endOfWork: String,
-    val working: String,
-    val final_hours: String
+    var date: String,
+    var time: String,
+    var assistant: String,
+    var route: String,
+    var em: String,
+    var endOfWork: String,
+    var working: String,
+    var final_hours: String
 )

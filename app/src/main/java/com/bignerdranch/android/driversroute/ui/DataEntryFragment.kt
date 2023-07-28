@@ -1,18 +1,26 @@
-package com.bignerdranch.android.driversroute
+package com.bignerdranch.android.driversroute.ui
 
 import android.os.Bundle
+import android.text.Editable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
+import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentDataEntryBinding
 import com.bignerdranch.android.driversroute.model.TripModel
+import kotlin.properties.Delegates.notNull
 
 class DataEntryFragment() : Fragment() {
 
-    private lateinit var tripModel: TripModel
+    private var entryDate by notNull<String>()
+    lateinit var entryTime : String
+    private var entryAssistant by notNull<String>()
 
     private lateinit var binding: FragmentDataEntryBinding
     private val viewModel: MainViewModel by activityViewModels()
@@ -32,24 +40,30 @@ class DataEntryFragment() : Fragment() {
         onClick()
     }
 
-    private fun updateDataEntry(binding: FragmentDataEntryBinding){
-            val item = TripModel(
-                date = binding.date.toString(),
-                time = binding.time.toString(),
-                assistant = binding.assistant.toString(),
-                route = binding.route.toString(),
-                em = binding.em.toString(),
-                endOfWork = binding.endOfWork.toString(),
-                working = binding.working.toString(),
-                final_hours = binding.finalHours.toString()
-            )
-            viewModel.myLiveData.value = item
+    private fun updateDataEntry(binding: FragmentDataEntryBinding) = with(binding){
+       // entryDate = binding.date.text.toString()
+
+        entryTime = "4444444444"
+
+
+              Log.d("@@@", "!!!!!!!!!!!!!!!!!!  $entryTime")
+
+        val item = TripModel(
+            date = "",
+            time = entryTime,
+            assistant = "егорка",
+            route = "",
+            em = "",
+            endOfWork = "",
+            working = "",
+            final_hours = ""
+        )
+        viewModel.myLiveData.value = item
+        Log.d("@@@", "${item}")
     }
-//FIX ME хотел аргумениты передать но у меня не те данные
+
     private fun onClick() {
-      //  var messageRoute =
         binding.buttonSaveAddData.setOnClickListener {
-          //  val action = DataEntryFragmentDirections.actionDataEntryFragmentToFebruaryFragment()
             val navController = view?.findNavController()
             view?.findNavController()?.navigate(R.id.action_dataEntryFragment_to_februaryFragment)
         }

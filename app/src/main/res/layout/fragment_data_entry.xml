@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#8C9EFF"
     android:backgroundTint="#82B1FF"
-    tools:context=".DataEntryFragment">
+    tools:context=".ui.DataEntryFragment">
 
     <Button
         android:id="@+id/button_save_add_data"
@@ -38,27 +38,25 @@
             android:layout_height="match_parent"
             android:background="#FFF980">
 
-            <TextView
+            <EditText
                 android:id="@+id/final_hours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="всего часов"
                 android:textColor="@color/black"
-                android:textColorHint="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/working"
                 app:layout_constraintTop_toTopOf="@+id/working" />
 
-            <TextView
+            <EditText
                 android:id="@+id/working"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="часы за поездку"
+                android:hint="часы за поездку"
                 android:textColor="@color/black"
-                android:textColorHint="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/end_of_work"

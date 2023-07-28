@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentMainBinding
-import com.bignerdranch.android.driversroute.fragment.*
+import com.bignerdranch.android.driversroute.ui.fragment.*
 import com.bignerdranch.android.driversroute.viewpager2.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import java.text.SimpleDateFormat

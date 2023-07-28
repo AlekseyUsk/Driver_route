@@ -1,4 +1,4 @@
-package com.bignerdranch.android.driversroute
+package com.bignerdranch.android.driversroute.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

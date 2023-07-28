@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/dataEntryFragment"
-        android:name="com.bignerdranch.android.driversroute.DataEntryFragment"
+        android:name="com.bignerdranch.android.driversroute.ui.DataEntryFragment"
         android:label="fragment_data_entry"
         tools:layout="@layout/fragment_data_entry" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/februaryFragment"
-        android:name="com.bignerdranch.android.driversroute.fragment.FebruaryFragment"
+        android:name="com.bignerdranch.android.driversroute.ui.fragment.FebruaryFragment"
         android:label="FebruaryFragment" >
         <argument
             android:name="updateData" />

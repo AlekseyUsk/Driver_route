@@ -1,4 +1,4 @@
-package com.bignerdranch.android.driversroute.fragment
+package com.bignerdranch.android.driversroute.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,13 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
-import com.bignerdranch.android.driversroute.DataEntryFragment
-import com.bignerdranch.android.driversroute.MainViewModel
-import com.bignerdranch.android.driversroute.R
+import com.bignerdranch.android.driversroute.ui.DataEntryFragment
+import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 import com.bignerdranch.android.driversroute.databinding.FragmentFebruaryBinding
 import com.bignerdranch.android.driversroute.model.TripModel
 
@@ -48,16 +45,17 @@ class FebruaryFragment : Fragment() {
         adapter = AdapterRV()
         rvFebruary.adapter = adapter
 
-        viewModel.myLiveData.observe(viewLifecycleOwner) {
+       viewModel.myLiveData.observe(viewLifecycleOwner) {
             adapter.submitList(getTripModelRoute(it))
-        }
 
+        }
     }
 
-    //получаем данные обсервера после ввода за поездку данных
+    //фун обработка данных обсерверу
     private fun getTripModelRoute(item: TripModel): List<TripModel> {
 
         val list = arrayListOf<TripModel>()
+
         val item = TripModel(
             date = item.date,
             time = item.time,

@@ -1,4 +1,4 @@
-package com.bignerdranch.android.driversroute.fragment
+package com.bignerdranch.android.driversroute.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,19 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.bignerdranch.android.driversroute.R
 
-
-class NovemberFragment : Fragment() {
+class AgostoFragment : Fragment() {
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_julio, container, false)
+        return inflater.inflate(R.layout.fragment_agosto, container, false)
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = NovemberFragment()
+        fun newInstance() = AgostoFragment()
     }
 }

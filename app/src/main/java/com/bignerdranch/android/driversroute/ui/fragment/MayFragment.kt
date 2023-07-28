@@ -1,4 +1,4 @@
-package com.bignerdranch.android.driversroute.fragment
+package com.bignerdranch.android.driversroute.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.bignerdranch.android.driversroute.R
 
 
-class SeptemberFragment : Fragment() {
+class MayFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -20,6 +20,6 @@ class SeptemberFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = SeptemberFragment()
+        fun newInstance() = MayFragment()
     }
 }
