@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_mainFragment_to_dataEntryFragment"
             app:destination="@id/dataEntryFragment" />
+        <argument
+            android:name="receivedData"
+            app:argType="string"
+            android:defaultValue='0' />
     </fragment>
     <fragment
         android:id="@+id/dataEntryFragment"
@@ -20,14 +24,7 @@
         android:label="fragment_data_entry"
         tools:layout="@layout/fragment_data_entry" >
         <action
-            android:id="@+id/action_dataEntryFragment_to_februaryFragment"
-            app:destination="@id/februaryFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/februaryFragment"
-        android:name="com.bignerdranch.android.driversroute.ui.fragment.FebruaryFragment"
-        android:label="FebruaryFragment" >
-        <argument
-            android:name="updateData" />
+            android:id="@+id/action_dataEntryFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

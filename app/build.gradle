@@ -36,12 +36,11 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    // Safe Args
-    apply plugin: 'androidx.navigation.safeargs'
+    //Safe Args
+    apply plugin: "androidx.navigation.safeargs.kotlin"
 }
 
 dependencies {
-
 
     //навигация
     implementation 'androidx.navigation:navigation-fragment:2.5.3'

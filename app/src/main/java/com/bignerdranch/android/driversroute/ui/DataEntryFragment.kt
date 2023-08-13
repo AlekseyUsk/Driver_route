@@ -1,29 +1,26 @@
 package com.bignerdranch.android.driversroute.ui
 
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+
 import androidx.navigation.findNavController
-import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
+
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentDataEntryBinding
-import com.bignerdranch.android.driversroute.model.TripModel
-import kotlin.properties.Delegates.notNull
+
+import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 
 class DataEntryFragment() : Fragment() {
 
-    private var entryDate by notNull<String>()
-    lateinit var entryTime : String
-    private var entryAssistant by notNull<String>()
-
     private lateinit var binding: FragmentDataEntryBinding
     private val viewModel: MainViewModel by activityViewModels()
+
+    private lateinit var editDate: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,36 +33,19 @@ class DataEntryFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        updateDataEntry(binding)
-        onClick()
+        onClick(view)
     }
 
-    private fun updateDataEntry(binding: FragmentDataEntryBinding) = with(binding){
-       // entryDate = binding.date.text.toString()
-
-        entryTime = "4444444444"
-
-
-              Log.d("@@@", "!!!!!!!!!!!!!!!!!!  $entryTime")
-
-        val item = TripModel(
-            date = "",
-            time = entryTime,
-            assistant = "егорка",
-            route = "",
-            em = "",
-            endOfWork = "",
-            working = "",
-            final_hours = ""
-        )
-        viewModel.myLiveData.value = item
-        Log.d("@@@", "${item}")
+    private fun sendMessage() {
+        editDate = binding.dateEntry.text.toString()
+        val action = DataEntryFragmentDirections.actionDataEntryFragmentToMainFragment(editDate)
+        view?.findNavController()?.navigate(action)
+        Log.d("@@@", "sendMessage  $editDate")
     }
 
-    private fun onClick() {
+    private fun onClick(view: View){
         binding.buttonSaveAddData.setOnClickListener {
-            val navController = view?.findNavController()
-            view?.findNavController()?.navigate(R.id.action_dataEntryFragment_to_februaryFragment)
+            sendMessage()
         }
     }
 
