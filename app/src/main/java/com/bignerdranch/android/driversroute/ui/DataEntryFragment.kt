@@ -7,12 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-
 import androidx.navigation.findNavController
-
-import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentDataEntryBinding
-
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 
 class DataEntryFragment() : Fragment() {
@@ -47,10 +43,5 @@ class DataEntryFragment() : Fragment() {
         binding.buttonSaveAddData.setOnClickListener {
             sendMessage()
         }
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = DataEntryFragment()
     }
 }

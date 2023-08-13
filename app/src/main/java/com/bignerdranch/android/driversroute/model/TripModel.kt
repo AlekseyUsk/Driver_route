@@ -10,5 +10,5 @@ data class TripModel(
     var em: String,
     var endOfWork: String,
     var working: String,
-    var final_hours: String
+    var finalHours: String
 )

@@ -23,7 +23,7 @@ class AdapterRV : ListAdapter<TripModel, AdapterRV.Holder>(Comparator()) {
             emItem.text = item.em
             endOfWorkItem.text = item.endOfWork
             workingHoursPerTripItem.text = item.working
-            finalHoursItem.text = item.final_hours
+            finalHoursItem.text = item.finalHours
         }
     }
 

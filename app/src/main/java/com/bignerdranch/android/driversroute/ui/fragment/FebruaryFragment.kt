@@ -33,6 +33,7 @@ class FebruaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+    setTripModelRoute()
         update()
     }
 
@@ -42,12 +43,47 @@ class FebruaryFragment : Fragment() {
         rvFebruary.adapter = adapter
 
        viewModel.myLiveData.observe(viewLifecycleOwner) {
-            adapter.submitList(viewModel.getTripModelRoute(it))
+            adapter.submitList(getTripModelRoute(it))
         }
+    }
+
+    //достаем заполненный
+    fun getTripModelRoute(item: TripModel): List<TripModel> = with(binding){
+        val list = ArrayList<TripModel>()
+
+        val item = TripModel(
+            date = "${item.date}",
+            time = item.time,
+            assistant = item.assistant,
+            route = item.route,
+            em = item.em,
+            endOfWork = item.endOfWork,
+            working = item.working,
+            finalHours = item.finalHours
+        )
+        list.add(item)
+        return list
+    }
+
+//заполнил и передать надо
+    fun setTripModelRoute() = with(binding){
+
+        val item = TripModel(
+            date = "${viewModel.getDate.value}",
+            time = "",
+            assistant = "помоха",
+            route = "",
+            em = "",
+            endOfWork = "",
+            working = "",
+            finalHours = ""
+        )
+        viewModel.myLiveData.value = item
     }
 
     companion object {
         @JvmStatic
         fun newInstance() = FebruaryFragment()
     }
+
 }

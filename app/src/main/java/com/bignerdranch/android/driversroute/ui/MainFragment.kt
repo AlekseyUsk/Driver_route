@@ -21,7 +21,7 @@ import kotlin.properties.Delegates
 
 class MainFragment : Fragment() {
 
-    private var getMessage by Delegates.notNull<String>()
+    //  private var getMessage by Delegates.notNull<String>()
 
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var binding: FragmentMainBinding
@@ -66,21 +66,15 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getMessage = MainFragmentArgs.fromBundle(requireArguments()).receivedData
-        if (getMessage != null) {
-
-            binding.hoursWorked.text = getMessage
-            Log.d("@@@", "MainFragment onViewCreated - $getMessage")
-
-        }
-
+        currentDateTime()
         onClick()
         init()
 
-        binding.currentData.text =
-            SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
-        binding.currentTime.text = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
-
+        viewModel.getDate.value = MainFragmentArgs.fromBundle(requireArguments()).receivedData
+        if (viewModel.getDate != null) {
+         //   binding.hoursWorked.text = viewModel.getDate.value тут отображу общие часы
+            Log.d("@@@", "MainFragment onViewCreated - ${viewModel.getDate.value}")
+        }
 
     }
 
@@ -99,8 +93,10 @@ class MainFragment : Fragment() {
         }
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = MainFragment()
+    private fun currentDateTime() {
+        binding.currentData.text =
+            SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
+        binding.currentTime.text = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
     }
+
 }
