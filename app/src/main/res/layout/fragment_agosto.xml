@@ -5,11 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragmentsOfMonthsOfTheYear.AgostoFragment">
 
-    <TextView
-        android:textSize="510sp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_agosto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/hello_blank_fragment" />
-
+        android:layout_height="match_parent" />
 </FrameLayout>
