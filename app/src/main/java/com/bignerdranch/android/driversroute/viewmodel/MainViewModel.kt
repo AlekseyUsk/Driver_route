@@ -2,6 +2,8 @@ package com.bignerdranch.android.driversroute.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bignerdranch.android.driversroute.AdapterRV
 import com.bignerdranch.android.driversroute.model.TripModel
 
 class MainViewModel() : ViewModel() {
@@ -19,5 +21,39 @@ class MainViewModel() : ViewModel() {
 
     var setList = mutableSetOf<TripModel>()
     var myList = mutableListOf<TripModel>()
+
+    //введеные данные пользователем обновляют карточку и добавляют ее в список
+    fun getTripModelRoute(item: TripModel): List<TripModel>{
+
+        val itemUpdate = TripModel(
+            date = item.date,
+            time = item.time,
+            assistant = item.assistant,
+            route = item.route,
+            em = item.em,
+            endOfWork = item.endOfWork,
+            working = item.working,
+            finalHours = item.finalHours
+        )
+        setList.add(itemUpdate)
+        myList = setList.toList() as MutableList<TripModel>
+        return  myList
+    }
+
+    //пользователь вводит данные
+    fun setTripModelRoute() {
+
+        val itemStart = TripModel(
+            date = "${getDate.value}",
+            time = "время явки ",
+            assistant = "${getAssistant.value}",
+            route = "Инская - Болотное",
+            em = "ЭМ - 35765",
+            endOfWork = "",
+            working = "",
+            finalHours = ""
+        )
+        myLiveData.value = itemStart
+    }
 
 }

@@ -32,7 +32,7 @@ class FebruaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setTripModelRoute()
+        viewModel.setTripModelRoute()
         addACard()
     }
 
@@ -42,43 +42,9 @@ class FebruaryFragment : Fragment() {
         rvFebruary.adapter = adapter
 
         viewModel.myLiveData.observe(viewLifecycleOwner) {
-            getTripModelRoute(it)
+            viewModel.getTripModelRoute(it)
             adapter.submitList(viewModel.myList)
         }
-    }
-
-    //введеные данные пользователем обновляют карточку и добавляют ее в список
-    private fun getTripModelRoute(item: TripModel): List<TripModel> = with(binding) {
-
-        val itemUpdate = TripModel(
-            date = item.date,
-            time = item.time,
-            assistant = item.assistant,
-            route = item.route,
-            em = item.em,
-            endOfWork = item.endOfWork,
-            working = item.working,
-            finalHours = item.finalHours
-        )
-        viewModel.setList.add(itemUpdate)
-        viewModel.myList = viewModel.setList.toList() as MutableList<TripModel>
-        return viewModel.myList
-    }
-
-    //пользователь вводит данные
-    private fun setTripModelRoute() {
-
-        val itemStart = TripModel(
-            date = "${viewModel.getDate.value}",
-            time = "время явки ",
-            assistant = "${viewModel.getAssistant.value}",
-            route = "Инская - Болотное",
-            em = "ЭМ - 35765",
-            endOfWork = "",
-            working = "",
-            finalHours = ""
-        )
-        viewModel.myLiveData.value = itemStart
     }
 
     companion object {
