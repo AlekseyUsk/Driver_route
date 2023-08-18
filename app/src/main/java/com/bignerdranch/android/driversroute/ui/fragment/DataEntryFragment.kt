@@ -79,5 +79,11 @@ class DataEntryFragment() : Fragment() {
             ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, autoListRoute)
         route.threshold = 0
         route.setAdapter(autoRouteAdapter)
+
+        val autoListAssistant = resources.getStringArray(R.array.assistant)
+        val autoAssistantAdapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, autoListAssistant)
+        assistant.threshold = 0
+        assistant.setAdapter(autoAssistantAdapter)
     }
 }

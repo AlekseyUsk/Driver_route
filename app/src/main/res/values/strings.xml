@@ -27,6 +27,26 @@
             <item>Инская-Черепаново</item>
             <item>Инская-Обь</item>
             <item>Инская-Чулымская</item>
+            <item>Инская-Изынский</item>
+            <item>Инская-Тогучин</item>
+            <item>Инская-Новосибирск Главный</item>
+            <item>Инская-Промышленная</item>
         </string-array>
+
+    <string-array name="assistant">
+        <item>Гольцгайзер Д.C</item>
+        <item>Птичкин</item>
+        <item>Луговик Андрюха</item>
+        <item>Ивлев Д.В</item>
+        <item>Изосимов Игорек</item>
+        <item>Завгородний К.Г</item>
+        <item>Ваулин Вован</item>
+        <item>Рома Фуфул</item>
+        <item>Сидоркин</item>
+        <item>Николаеч</item>
+        <item>Эрнест</item>
+        <item>Гебелс</item>
+        <item>Памелла Андерсен</item>
+    </string-array>
 
 </resources>
