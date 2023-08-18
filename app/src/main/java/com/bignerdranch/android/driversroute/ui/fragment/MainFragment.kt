@@ -1,7 +1,6 @@
 package com.bignerdranch.android.driversroute.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -93,9 +92,15 @@ class MainFragment : Fragment() {
         binding.currentTime.text = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
     }
 
-    private fun monitoringOfTheReceivedData(){
-        viewModel.getDate.value = MainFragmentArgs.fromBundle(requireArguments()).receivedData
-        viewModel.getAssistant.value = MainFragmentArgs.fromBundle(requireArguments()).receivedAsistent
+    private fun monitoringOfTheReceivedData() = with(viewModel){
+        getDate.value = MainFragmentArgs.fromBundle(requireArguments()).receivedDate
+        getAssistant.value = MainFragmentArgs.fromBundle(requireArguments()).receivedAssistant
+        getTime.value = MainFragmentArgs.fromBundle(requireArguments()).receivedTime
+        getRoute.value = MainFragmentArgs.fromBundle(requireArguments()).receivedRoute
+        getEm.value = MainFragmentArgs.fromBundle(requireArguments()).receivedEm
+        getEndOfWork.value = MainFragmentArgs.fromBundle(requireArguments()).receivedEndOfWork
+        getWorking.value = MainFragmentArgs.fromBundle(requireArguments()).receivedWorking
+        getFinalHours.value = MainFragmentArgs.fromBundle(requireArguments()).receivedFinalHours
     }
 
 }

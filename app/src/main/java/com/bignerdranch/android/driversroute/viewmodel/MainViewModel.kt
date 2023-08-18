@@ -44,14 +44,14 @@ class MainViewModel() : ViewModel() {
     fun setTripModelRoute() {
 
         val itemStart = TripModel(
-            date = "${getDate.value}",
-            time = "время явки ",
-            assistant = "${getAssistant.value}",
-            route = "Инская - Болотное",
-            em = "ЭМ - 35765",
-            endOfWork = "",
-            working = "",
-            finalHours = ""
+            date = "Дата/ ${getDate.value}",
+            time = "время явки/ ${getTime.value}",
+            assistant = "ТчПМ/ ${getAssistant.value}",
+            route = "ПЛЕЧО/ ${getRoute.value}",
+            em = "ЭМ/ ${getEm.value}",
+            endOfWork = "ОР/ ${getEndOfWork.value}",
+            working = "Рабочее время за поездку/ ${getWorking.value}",
+            finalHours = "ВСЕГО ЧАСОВ ЗА МЕСЯЦ/ ${getFinalHours.value}"
         )
         myLiveData.value = itemStart
     }

@@ -16,7 +16,7 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="#DA2E2E"
         android:text="сохранить данные"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/card_view_data"
         app:layout_constraintHorizontal_bias="0.429"
         app:layout_constraintStart_toStartOf="@+id/card_view_data"
@@ -36,29 +36,30 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFF980">
+            android:background="@color/white">
 
             <EditText
                 android:id="@+id/final_hours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:hint="всего часов"
+                android:inputType="time"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/working"
-                app:layout_constraintTop_toTopOf="@+id/working" />
+                app:layout_constraintStart_toStartOf="@+id/working"
+                app:layout_constraintTop_toBottomOf="@+id/working" />
 
             <EditText
                 android:id="@+id/working"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
                 android:hint="часы за поездку"
+                android:inputType="time"
+                android:maxLength="5"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/end_of_work"
                 app:layout_constraintTop_toBottomOf="@+id/end_of_work" />
 
@@ -66,7 +67,10 @@
                 android:id="@+id/end_of_work"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:hint="введите окончание работы"
+                android:inputType="time"
+                android:maxLength="5"
                 app:layout_constraintStart_toStartOf="@+id/em"
                 app:layout_constraintTop_toBottomOf="@+id/em" />
 
@@ -74,18 +78,19 @@
                 android:id="@+id/em"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:hint="введите номер ЭМ"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 app:layout_constraintEnd_toEndOf="@+id/route"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/route"
                 app:layout_constraintTop_toBottomOf="@+id/route" />
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/route"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:hint="введите плечо"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="@+id/assistant"
@@ -107,7 +112,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="введите время явки"
-                android:inputType="textPersonName"
+                android:inputType="time"
+                android:maxLength="5"
                 app:layout_constraintStart_toStartOf="@+id/dateEntry"
                 app:layout_constraintTop_toBottomOf="@+id/dateEntry" />
 
@@ -128,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="введите дату явки"
-                android:inputType="textPersonName"
+                android:inputType="date"
                 app:layout_constraintStart_toStartOf="@+id/turnout"
                 app:layout_constraintTop_toBottomOf="@+id/turnout" />
 

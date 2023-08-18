@@ -1,16 +1,15 @@
 package com.bignerdranch.android.driversroute.ui.fragmentsOfMonthsOfTheYear
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
-import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 import com.bignerdranch.android.driversroute.databinding.FragmentJanuaryBinding
-import com.bignerdranch.android.driversroute.model.TripModel
+import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 
 
 class JanuaryFragment : Fragment() {
@@ -31,28 +30,20 @@ class JanuaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initRcView()
+     //   addACard()
 
     }
 
-    private fun initRcView() = with(binding) {
-        rvJanuary.layoutManager = LinearLayoutManager(activity)
-        adapter = AdapterRV()
-        rvJanuary.adapter = adapter
-        val myList = listOf<TripModel>(
-            TripModel(
-                "20.01.1989",
-                "23:00",
-                "Ивлев Данила табельный - 29170",
-                "Инская - Московка",
-                "63546",
-                "7:40",
-                "8:40",
-                "156:35"
-            )
-        )
-        adapter.submitList(myList)
-    }
+//    private fun addACard() = with(binding) {
+//        rvJanuary.layoutManager = LinearLayoutManager(activity)
+//        adapter = AdapterRV()
+//        rvJanuary.adapter = adapter
+//
+//        viewModel.myLiveData.observe(viewLifecycleOwner) {
+//            viewModel.getTripModelRoute(it)
+//            adapter.submitList(viewModel.myList)
+//        }
+//    }
 
     companion object {
         @JvmStatic

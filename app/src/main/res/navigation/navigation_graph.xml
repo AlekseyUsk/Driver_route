@@ -14,13 +14,37 @@
             android:id="@+id/action_mainFragment_to_dataEntryFragment"
             app:destination="@id/dataEntryFragment" />
         <argument
-            android:name="receivedData"
+            android:name="receivedDate"
             app:argType="string"
             android:defaultValue='' />
         <argument
-            android:name="receivedAsistent"
+            android:name="receivedAssistant"
             app:argType="string"
             android:defaultValue="" />
+        <argument
+            android:name="receivedTime"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="receivedRoute"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="receivedEm"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="receivedEndOfWork"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="receivedWorking"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="receivedFinalHours"
+            app:argType="string"
+            android:defaultValue=""/>
     </fragment>
     <fragment
         android:id="@+id/dataEntryFragment"

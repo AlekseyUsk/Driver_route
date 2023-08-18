@@ -17,4 +17,16 @@
         <item>ноябрь</item>
         <item>декабрь</item>
     </string-array>
+
+        <string-array name="route">
+            <item>Инская-Барабинск</item>
+            <item>Инская-Московка</item>
+            <item>Инская-Тайга</item>
+            <item>Инская-Мариинск</item>
+            <item>Инская-Белово</item>
+            <item>Инская-Черепаново</item>
+            <item>Инская-Обь</item>
+            <item>Инская-Чулымская</item>
+        </string-array>
+
 </resources>
