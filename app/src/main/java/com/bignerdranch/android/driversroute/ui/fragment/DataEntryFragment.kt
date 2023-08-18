@@ -1,4 +1,4 @@
-package com.bignerdranch.android.driversroute.ui
+package com.bignerdranch.android.driversroute.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +17,7 @@ class DataEntryFragment() : Fragment() {
     private val viewModel: MainViewModel by activityViewModels()
 
     private lateinit var editDate: String
+    private lateinit var editAssistant: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,9 +35,11 @@ class DataEntryFragment() : Fragment() {
 
     private fun sendMessage() {
         editDate = binding.dateEntry.text.toString()
-        val action = DataEntryFragmentDirections.actionDataEntryFragmentToMainFragment(editDate)
+        editAssistant = binding.assistant.text.toString()
+
+        val action = DataEntryFragmentDirections.actionDataEntryFragmentToMainFragment(editDate,editAssistant)
         view?.findNavController()?.navigate(action)
-        Log.d("@@@", "sendMessage  $editDate")
+        Log.d("@@@", "sendMessage  $action")
     }
 
     private fun onClick(view: View){

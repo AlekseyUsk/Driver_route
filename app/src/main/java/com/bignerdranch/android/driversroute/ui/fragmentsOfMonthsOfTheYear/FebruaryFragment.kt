@@ -1,17 +1,16 @@
-package com.bignerdranch.android.driversroute.ui.fragment
+package com.bignerdranch.android.driversroute.ui.fragmentsOfMonthsOfTheYear
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
-import com.bignerdranch.android.driversroute.ui.DataEntryFragment
-import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 import com.bignerdranch.android.driversroute.databinding.FragmentFebruaryBinding
 import com.bignerdranch.android.driversroute.model.TripModel
+import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 
 
 class FebruaryFragment : Fragment() {
@@ -33,26 +32,26 @@ class FebruaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-    setTripModelRoute()
-        update()
+        setTripModelRoute()
+        addACard()
     }
 
-    private fun update() = with(binding) {
+    private fun addACard() = with(binding) {
         rvFebruary.layoutManager = LinearLayoutManager(activity)
         adapter = AdapterRV()
         rvFebruary.adapter = adapter
 
-       viewModel.myLiveData.observe(viewLifecycleOwner) {
-            adapter.submitList(getTripModelRoute(it))
+        viewModel.myLiveData.observe(viewLifecycleOwner) {
+            getTripModelRoute(it)
+            adapter.submitList(viewModel.myList)
         }
     }
 
-    //достаем заполненный
-    fun getTripModelRoute(item: TripModel): List<TripModel> = with(binding){
-        val list = ArrayList<TripModel>()
+    //введеные данные пользователем обновляют карточку и добавляют ее в список
+    private fun getTripModelRoute(item: TripModel): List<TripModel> = with(binding) {
 
-        val item = TripModel(
-            date = "${item.date}",
+        val itemUpdate = TripModel(
+            date = item.date,
             time = item.time,
             assistant = item.assistant,
             route = item.route,
@@ -61,24 +60,25 @@ class FebruaryFragment : Fragment() {
             working = item.working,
             finalHours = item.finalHours
         )
-        list.add(item)
-        return list
+        viewModel.setList.add(itemUpdate)
+        viewModel.myList = viewModel.setList.toList() as MutableList<TripModel>
+        return viewModel.myList
     }
 
-//заполнил и передать надо
-    fun setTripModelRoute() = with(binding){
+    //пользователь вводит данные
+    private fun setTripModelRoute() {
 
-        val item = TripModel(
+        val itemStart = TripModel(
             date = "${viewModel.getDate.value}",
-            time = "",
-            assistant = "помоха",
-            route = "",
-            em = "",
+            time = "время явки ",
+            assistant = "${viewModel.getAssistant.value}",
+            route = "Инская - Болотное",
+            em = "ЭМ - 35765",
             endOfWork = "",
             working = "",
             finalHours = ""
         )
-        viewModel.myLiveData.value = item
+        viewModel.myLiveData.value = itemStart
     }
 
     companion object {

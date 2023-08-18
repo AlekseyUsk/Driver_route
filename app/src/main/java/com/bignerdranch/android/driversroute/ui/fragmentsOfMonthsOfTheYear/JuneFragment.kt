@@ -1,4 +1,4 @@
-package com.bignerdranch.android.driversroute.ui.fragment
+package com.bignerdranch.android.driversroute.ui.fragmentsOfMonthsOfTheYear
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.bignerdranch.android.driversroute.R
 
 
-class MarchFragment : Fragment() {
+class JuneFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -20,6 +20,6 @@ class MarchFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = MarchFragment()
+        fun newInstance() = JuneFragment()
     }
 }

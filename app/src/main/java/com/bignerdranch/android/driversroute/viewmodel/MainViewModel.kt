@@ -6,15 +6,18 @@ import com.bignerdranch.android.driversroute.model.TripModel
 
 class MainViewModel() : ViewModel() {
 
-    var getDate = MutableLiveData<String>("")
-    var getTime = MutableLiveData<String>("")
-    var getAssistant = MutableLiveData<String>("")
-    var getRoute = MutableLiveData<String>("")
-    var getEm = MutableLiveData<String>("")
-    var getEndOfWork = MutableLiveData<String>("")
-    var getWorking = MutableLiveData<String>("")
-    var getFinalHours = MutableLiveData<String>("")
+    val getDate = MutableLiveData<String>("")
+    val getTime = MutableLiveData<String>("")
+    val getAssistant = MutableLiveData<String>("")
+    val getRoute = MutableLiveData<String>("")
+    val getEm = MutableLiveData<String>("")
+    val getEndOfWork = MutableLiveData<String>("")
+    val getWorking = MutableLiveData<String>("")
+    val getFinalHours = MutableLiveData<String>("")
 
     val myLiveData = MutableLiveData<TripModel>()
+
+    var setList = mutableSetOf<TripModel>()
+    var myList = mutableListOf<TripModel>()
 
 }

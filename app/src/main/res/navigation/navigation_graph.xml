@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.bignerdranch.android.driversroute.ui.MainFragment"
+        android:name="com.bignerdranch.android.driversroute.ui.fragment.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -16,11 +16,15 @@
         <argument
             android:name="receivedData"
             app:argType="string"
-            android:defaultValue='0' />
+            android:defaultValue='' />
+        <argument
+            android:name="receivedAsistent"
+            app:argType="string"
+            android:defaultValue="" />
     </fragment>
     <fragment
         android:id="@+id/dataEntryFragment"
-        android:name="com.bignerdranch.android.driversroute.ui.DataEntryFragment"
+        android:name="com.bignerdranch.android.driversroute.ui.fragment.DataEntryFragment"
         android:label="fragment_data_entry"
         tools:layout="@layout/fragment_data_entry" >
         <action

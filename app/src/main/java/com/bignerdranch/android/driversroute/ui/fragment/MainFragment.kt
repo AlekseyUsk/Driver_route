@@ -1,4 +1,4 @@
-package com.bignerdranch.android.driversroute.ui
+package com.bignerdranch.android.driversroute.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -11,13 +11,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentMainBinding
-import com.bignerdranch.android.driversroute.ui.fragment.*
+import com.bignerdranch.android.driversroute.ui.fragmentsOfMonthsOfTheYear.*
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 import com.bignerdranch.android.driversroute.viewpager2.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.properties.Delegates
 
 class MainFragment : Fragment() {
 
@@ -69,12 +68,7 @@ class MainFragment : Fragment() {
         currentDateTime()
         onClick()
         init()
-
-        viewModel.getDate.value = MainFragmentArgs.fromBundle(requireArguments()).receivedData
-        if (viewModel.getDate != null) {
-         //   binding.hoursWorked.text = viewModel.getDate.value тут отображу общие часы
-            Log.d("@@@", "MainFragment onViewCreated - ${viewModel.getDate.value}")
-        }
+        monitoringOfTheReceivedData()
 
     }
 
@@ -97,6 +91,11 @@ class MainFragment : Fragment() {
         binding.currentData.text =
             SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
         binding.currentTime.text = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
+    }
+
+    private fun monitoringOfTheReceivedData(){
+        viewModel.getDate.value = MainFragmentArgs.fromBundle(requireArguments()).receivedData
+        viewModel.getAssistant.value = MainFragmentArgs.fromBundle(requireArguments()).receivedAsistent
     }
 
 }

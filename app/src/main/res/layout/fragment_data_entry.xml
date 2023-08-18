@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#8C9EFF"
     android:backgroundTint="#82B1FF"
-    tools:context=".ui.DataEntryFragment">
+    tools:context=".ui.fragment.DataEntryFragment">
 
     <Button
         android:id="@+id/button_save_add_data"
