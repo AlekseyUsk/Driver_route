@@ -30,23 +30,27 @@ class JanuaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-     //   addACard()
-
+        viewModel.mvCurrentDate.toInt()
+        viewModel.setTripModelRoute()
+        addACard()
     }
 
-//    private fun addACard() = with(binding) {
-//        rvJanuary.layoutManager = LinearLayoutManager(activity)
-//        adapter = AdapterRV()
-//        rvJanuary.adapter = adapter
-//
-//        viewModel.myLiveData.observe(viewLifecycleOwner) {
-//            viewModel.getTripModelRoute(it)
-//            adapter.submitList(viewModel.myList)
-//        }
-//    }
+    private fun addACard() = with(binding) {
+        rvJanuary.layoutManager = LinearLayoutManager(activity)
+        adapter = AdapterRV()
+        rvJanuary.adapter = adapter
+
+        viewModel.myLiveData.observe(viewLifecycleOwner) {
+            if (viewModel.mvCurrentDate.toInt() == JANUARY) {
+                viewModel.getTripModelRoute(it)
+                adapter.submitList(viewModel.myList)
+            }
+        }
+    }
 
     companion object {
         @JvmStatic
         fun newInstance() = JanuaryFragment()
+        const val JANUARY = 1
     }
 }

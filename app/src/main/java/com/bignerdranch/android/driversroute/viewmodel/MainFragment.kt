@@ -1,4 +1,4 @@
-package com.bignerdranch.android.driversroute.ui.fragment
+package com.bignerdranch.android.driversroute.viewmodel
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,15 +11,12 @@ import androidx.navigation.findNavController
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentMainBinding
 import com.bignerdranch.android.driversroute.ui.fragmentsOfMonthsOfTheYear.*
-import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 import com.bignerdranch.android.driversroute.viewpager2.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import java.text.SimpleDateFormat
 import java.util.*
 
 class MainFragment : Fragment() {
-
-    //  private var getMessage by Delegates.notNull<String>()
 
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var binding: FragmentMainBinding
@@ -102,5 +99,4 @@ class MainFragment : Fragment() {
         getWorking.value = MainFragmentArgs.fromBundle(requireArguments()).receivedWorking
         getFinalHours.value = MainFragmentArgs.fromBundle(requireArguments()).receivedFinalHours
     }
-
 }

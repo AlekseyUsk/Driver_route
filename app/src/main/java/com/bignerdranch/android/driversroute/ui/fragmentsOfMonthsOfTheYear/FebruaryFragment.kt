@@ -9,13 +9,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
 import com.bignerdranch.android.driversroute.databinding.FragmentFebruaryBinding
-import com.bignerdranch.android.driversroute.model.TripModel
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 
 
 class FebruaryFragment : Fragment() {
-
-    var listFebruary = listOf<TripModel>()
 
     private lateinit var binding: FragmentFebruaryBinding
     private val viewModel: MainViewModel by activityViewModels()
@@ -32,6 +29,7 @@ class FebruaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.mvCurrentDate.toInt()
         viewModel.setTripModelRoute()
         addACard()
     }
@@ -42,14 +40,16 @@ class FebruaryFragment : Fragment() {
         rvFebruary.adapter = adapter
 
         viewModel.myLiveData.observe(viewLifecycleOwner) {
-            viewModel.getTripModelRoute(it)
-            adapter.submitList(viewModel.myList)
+            if (viewModel.mvCurrentDate.toInt() == FEBRUARY){
+                viewModel.getTripModelRoute(it)
+                adapter.submitList(viewModel.myList)
+            }
         }
     }
 
     companion object {
         @JvmStatic
         fun newInstance() = FebruaryFragment()
+        const val FEBRUARY = 2
     }
-
 }

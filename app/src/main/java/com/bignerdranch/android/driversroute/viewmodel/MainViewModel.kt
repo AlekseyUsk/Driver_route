@@ -1,12 +1,16 @@
 package com.bignerdranch.android.driversroute.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.bignerdranch.android.driversroute.AdapterRV
 import com.bignerdranch.android.driversroute.model.TripModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainViewModel() : ViewModel() {
+
+    private val mvSdf = SimpleDateFormat("M")
+    val mvCurrentDate : String = mvSdf.format(Date())
 
     val getDate = MutableLiveData<String>("")
     val getTime = MutableLiveData<String>("")
@@ -54,6 +58,10 @@ class MainViewModel() : ViewModel() {
             finalHours = "ВСЕГО ЧАСОВ ЗА МЕСЯЦ/ ${getFinalHours.value}"
         )
         myLiveData.value = itemStart
+    }
+
+    fun distributionOfDataByMonth(){
+
     }
 
 }

@@ -40,7 +40,7 @@
 
             <EditText
                 android:id="@+id/final_hours"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:hint="всего часов"
@@ -52,7 +52,7 @@
 
             <EditText
                 android:id="@+id/working"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:hint="часы за поездку"
@@ -65,7 +65,7 @@
 
             <EditText
                 android:id="@+id/end_of_work"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:hint="введите окончание работы"
@@ -76,10 +76,9 @@
 
             <EditText
                 android:id="@+id/em"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:ems="10"
                 android:hint="введите номер ЭМ"
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="@+id/route"
@@ -107,9 +106,8 @@
 
             <EditText
                 android:id="@+id/time"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:hint="введите время явки"
                 android:inputType="time"
                 android:maxLength="5"
@@ -118,7 +116,7 @@
 
             <TextView
                 android:id="@+id/turnout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -129,9 +127,8 @@
 
             <EditText
                 android:id="@+id/dateEntry"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:hint="введите дату явки"
                 android:inputType="date"
                 app:layout_constraintStart_toStartOf="@+id/turnout"

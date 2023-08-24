@@ -13,6 +13,8 @@ import androidx.navigation.findNavController
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentDataEntryBinding
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DataEntryFragment() : Fragment() {
 
@@ -61,10 +63,9 @@ class DataEntryFragment() : Fragment() {
             editEm,
             editEndOfWork,
             editWorking,
-            editFinalHours
+            editFinalHours,
         )
         view?.findNavController()?.navigate(action)
-        Log.d("@@@", "sendMessage  $action")
     }
 
     private fun onClick(view: View) {
