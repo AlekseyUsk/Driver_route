@@ -1,4 +1,4 @@
-package com.bignerdranch.android.driversroute.ui.fragmentsOfMonthsOfTheYear
+package com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,14 +9,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
 import com.bignerdranch.android.driversroute.R
-import com.bignerdranch.android.driversroute.databinding.FragmentAprilBinding
-import com.bignerdranch.android.driversroute.databinding.FragmentFebruaryBinding
+import com.bignerdranch.android.driversroute.databinding.FragmentNovemberBinding
+import com.bignerdranch.android.driversroute.databinding.FragmentSeptemberBinding
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 
 
-class AprilFragment : Fragment() {
+class NovemberFragment : Fragment() {
 
-    private lateinit var binding: FragmentAprilBinding
+    private lateinit var binding: FragmentNovemberBinding
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var adapter: AdapterRV
 
@@ -24,7 +24,7 @@ class AprilFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAprilBinding.inflate(inflater, container, false)
+        binding = FragmentNovemberBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -37,12 +37,12 @@ class AprilFragment : Fragment() {
     }
 
     private fun addACard() = with(binding) {
-        rvApril.layoutManager = LinearLayoutManager(activity)
+        rvNovember.layoutManager = LinearLayoutManager(activity)
         adapter = AdapterRV()
-        rvApril.adapter = adapter
+        rvNovember.adapter = adapter
 
         viewModel.myLiveData.observe(viewLifecycleOwner) {
-            if (viewModel.mvCurrentDate.toInt() == APRIL) {
+            if (viewModel.mvCurrentDate.toInt() == NOVEMBER) {
                 viewModel.getTripModelRoute(it)
                 adapter.submitList(viewModel.myList)
             }
@@ -51,7 +51,7 @@ class AprilFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = AprilFragment()
-        const val APRIL = 4
+        fun newInstance() = NovemberFragment()
+        const val NOVEMBER = 11
     }
 }

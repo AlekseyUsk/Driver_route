@@ -1,4 +1,4 @@
-package com.bignerdranch.android.driversroute.ui.fragmentsOfMonthsOfTheYear
+package com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentAprilBinding
-import com.bignerdranch.android.driversroute.databinding.FragmentJulioBinding
+import com.bignerdranch.android.driversroute.databinding.FragmentMayBinding
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 
 
-class JulioFragment : Fragment() {
+class MayFragment : Fragment() {
 
-    private lateinit var binding: FragmentJulioBinding
+    private lateinit var binding: FragmentMayBinding
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var adapter: AdapterRV
 
@@ -24,7 +24,7 @@ class JulioFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentJulioBinding.inflate(inflater, container, false)
+        binding = FragmentMayBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -37,12 +37,12 @@ class JulioFragment : Fragment() {
     }
 
     private fun addACard() = with(binding) {
-        rvJulio.layoutManager = LinearLayoutManager(activity)
+        rvMay.layoutManager = LinearLayoutManager(activity)
         adapter = AdapterRV()
-        rvJulio.adapter = adapter
+        rvMay.adapter = adapter
 
         viewModel.myLiveData.observe(viewLifecycleOwner) {
-            if (viewModel.mvCurrentDate.toInt() == JULIO) {
+            if (viewModel.mvCurrentDate.toInt() == MAY) {
                 viewModel.getTripModelRoute(it)
                 adapter.submitList(viewModel.myList)
             }
@@ -51,7 +51,7 @@ class JulioFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = JulioFragment()
-        const val JULIO = 7
+        fun newInstance() = MayFragment()
+        const val MAY = 5
     }
 }

@@ -1,5 +1,6 @@
-package com.bignerdranch.android.driversroute.ui.fragmentsOfMonthsOfTheYear
+package com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear
 
+import android.bluetooth.BluetoothClass.Device.Major
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,13 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentAprilBinding
-import com.bignerdranch.android.driversroute.databinding.FragmentMayBinding
+import com.bignerdranch.android.driversroute.databinding.FragmentJuneBinding
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 
 
-class MayFragment : Fragment() {
+class JuneFragment : Fragment() {
 
-    private lateinit var binding: FragmentMayBinding
+    private lateinit var binding: FragmentJuneBinding
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var adapter: AdapterRV
 
@@ -24,7 +25,7 @@ class MayFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMayBinding.inflate(inflater, container, false)
+        binding = FragmentJuneBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -37,12 +38,12 @@ class MayFragment : Fragment() {
     }
 
     private fun addACard() = with(binding) {
-        rvMay.layoutManager = LinearLayoutManager(activity)
+        rvJune.layoutManager = LinearLayoutManager(activity)
         adapter = AdapterRV()
-        rvMay.adapter = adapter
+        rvJune.adapter = adapter
 
         viewModel.myLiveData.observe(viewLifecycleOwner) {
-            if (viewModel.mvCurrentDate.toInt() == MAY) {
+            if (viewModel.mvCurrentDate.toInt() == JUNE) {
                 viewModel.getTripModelRoute(it)
                 adapter.submitList(viewModel.myList)
             }
@@ -51,7 +52,7 @@ class MayFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = MayFragment()
-        const val MAY = 5
+        fun newInstance() = JuneFragment()
+        const val JUNE = 6
     }
 }

@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentMainBinding
-import com.bignerdranch.android.driversroute.ui.fragmentsOfMonthsOfTheYear.*
+import com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear.*
 import com.bignerdranch.android.driversroute.viewpager2.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import java.text.SimpleDateFormat

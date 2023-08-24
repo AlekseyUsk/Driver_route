@@ -1,7 +1,6 @@
-package com.bignerdranch.android.driversroute.ui.fragmentsOfMonthsOfTheYear
+package com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,12 +11,13 @@ import com.bignerdranch.android.driversroute.AdapterRV
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentAgostoBinding
 import com.bignerdranch.android.driversroute.databinding.FragmentFebruaryBinding
+import com.bignerdranch.android.driversroute.databinding.FragmentMarchBinding
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 
-class AgostoFragment : Fragment() {
 
+class MarchFragment : Fragment() {
 
-    private lateinit var binding: FragmentAgostoBinding
+    private lateinit var binding: FragmentMarchBinding
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var adapter: AdapterRV
 
@@ -25,7 +25,7 @@ class AgostoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAgostoBinding.inflate(inflater, container, false)
+        binding = FragmentMarchBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -38,12 +38,12 @@ class AgostoFragment : Fragment() {
     }
 
     private fun addACard() = with(binding) {
-        rvAgosto.layoutManager = LinearLayoutManager(activity)
+        rvMarch.layoutManager = LinearLayoutManager(activity)
         adapter = AdapterRV()
-        rvAgosto.adapter = adapter
+        rvMarch.adapter = adapter
 
         viewModel.myLiveData.observe(viewLifecycleOwner) {
-            if(viewModel.mvCurrentDate.toInt() == AGOSTO){
+            if (viewModel.mvCurrentDate.toInt() == MARCH) {
                 viewModel.getTripModelRoute(it)
                 adapter.submitList(viewModel.myList)
             }
@@ -52,7 +52,7 @@ class AgostoFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = AgostoFragment()
-        const val AGOSTO = 8
+        fun newInstance() = MarchFragment()
+        const val MARCH = 3
     }
 }
