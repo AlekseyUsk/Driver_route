@@ -4,6 +4,9 @@ plugins {
 
     //Safe Args
     id 'androidx.navigation.safeargs' version '2.4.2' apply false
+
+    //Room
+    id 'kotlin-kapt'
 }
 
 android {
@@ -41,6 +44,10 @@ android {
 }
 
 dependencies {
+
+    //Room
+    implementation 'androidx.room:room-runtime:2.5.2'
+    kapt 'androidx.room:room-compiler:2.5.2'
 
     //навигация
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
