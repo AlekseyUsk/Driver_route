@@ -8,8 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import com.bignerdranch.android.driversroute.MyApp
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentMainBinding
+import com.bignerdranch.android.driversroute.repository.RepositoryRoom
+import com.bignerdranch.android.driversroute.room.RouteEntity
 import com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear.*
 import com.bignerdranch.android.driversroute.viewpager2.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -65,7 +68,6 @@ class MainFragment : Fragment() {
         onClick()
         init()
         monitoringOfTheReceivedData()
-
     }
 
     private fun init() = with(binding) {
@@ -89,7 +91,7 @@ class MainFragment : Fragment() {
         binding.currentTime.text = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
     }
 
-    private fun monitoringOfTheReceivedData() = with(viewModel){
+    private fun monitoringOfTheReceivedData() = with(viewModel) {
         getDate.value = MainFragmentArgs.fromBundle(requireArguments()).receivedDate
         getAssistant.value = MainFragmentArgs.fromBundle(requireArguments()).receivedAssistant
         getTime.value = MainFragmentArgs.fromBundle(requireArguments()).receivedTime

@@ -1,21 +1,25 @@
 package com.bignerdranch.android.driversroute.room
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
 interface RouteDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertRoute(routeEntity: RouteEntity)
+    @Insert()
+   fun insertAll(list: List<RouteEntity>)
 
-    @Query("SELECT * FROM route_entity_table")
-    fun getRouteAll():List<RouteEntity>
+   @Insert()
+   fun insert(newRouteEntity: RouteEntity)
+
+   @Query("SELECT * FROM route_entity_table")
+   fun getAll() : LiveData<List<RouteEntity>>
 
     @Update
-    fun updateRoute(historyEntity: RouteEntity)
+   fun update(routeEntity: RouteEntity)
 
     @Delete
-    fun deleteRoute(historyEntity: RouteEntity)
-
+   fun delete(routeEntity: RouteEntity)
 
 }
+//onConflict = OnConflictStrategy.REPLACE в инсерт вставишь
