@@ -7,15 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentAgostoBinding
 import com.bignerdranch.android.driversroute.databinding.FragmentFebruaryBinding
+import com.bignerdranch.android.driversroute.repository.Repository
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
+import kotlinx.coroutines.launch
 
 class AgostoFragment : Fragment() {
 
+    private val repository = Repository()
 
     private lateinit var binding: FragmentAgostoBinding
     private val viewModel: MainViewModel by activityViewModels()
@@ -34,20 +38,30 @@ class AgostoFragment : Fragment() {
 
         viewModel.mvCurrentDate.toInt()
         viewModel.setTripModelRoute()
+        init()
         addACard()
     }
 
-    private fun addACard() = with(binding) {
-        rvAgosto.layoutManager = LinearLayoutManager(activity)
-        adapter = AdapterRV()
-        rvAgosto.adapter = adapter
-
+    private fun addACard(){
         viewModel.myLiveData.observe(viewLifecycleOwner) {
-            if(viewModel.mvCurrentDate.toInt() == AGOSTO){
+            if (viewModel.mvCurrentDate.toInt() == AGOSTO) {
+                viewModel.viewModelScope.launch {
+                    repository.getRoomRoute().observe(viewLifecycleOwner) {
+                        viewModel.convertingSavedDataFromATableToTripModel(it).let {
+                            adapter.submitList(it)
+                        }
+                    }
+                }
                 viewModel.getTripModelRoute(it)
                 adapter.submitList(viewModel.myList)
             }
         }
+    }
+
+    private fun init() = with(binding){
+        rvAgosto.layoutManager = LinearLayoutManager(activity)
+        adapter = AdapterRV()
+        rvAgosto.adapter = adapter
     }
 
     companion object {

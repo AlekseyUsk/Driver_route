@@ -45,17 +45,13 @@ android {
 
 dependencies {
 
+//Room
     implementation 'androidx.room:room-runtime:2.5.2'
     kapt 'androidx.room:room-compiler:2.5.2'
 // Kotlin Extensions and Coroutines support for Room
     implementation 'androidx.room:room-ktx:2.5.2'
 
-//    //Room
-//    implementation 'androidx.room:room-runtime:2.5.2'
-//    kapt 'androidx.room:room-compiler:2.5.2'
-//    kapt 'androidx.room:room-ktx:2.5.2'
-
-    //навигация
+//навигация
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 

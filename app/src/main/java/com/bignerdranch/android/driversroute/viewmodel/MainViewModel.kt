@@ -1,8 +1,11 @@
 package com.bignerdranch.android.driversroute.viewmodel
 
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bignerdranch.android.driversroute.AdapterRV
 import com.bignerdranch.android.driversroute.model.TripModel
 import com.bignerdranch.android.driversroute.repository.Repository
 import com.bignerdranch.android.driversroute.room.RouteEntity
@@ -13,6 +16,7 @@ import kotlin.collections.List
 
 class MainViewModel() : ViewModel() {
 
+    //region Поля
     private val repository = Repository()
 
     private val mvSdf = SimpleDateFormat("M")
@@ -28,11 +32,12 @@ class MainViewModel() : ViewModel() {
     val getFinalHours = MutableLiveData<String>("")
 
     val myLiveData = MutableLiveData<TripModel>()
-    val roomLiveData = MutableLiveData<List<RouteEntity>>()
 
+    //листы для перегрпировки введыных users данных
     var setList = mutableSetOf<TripModel>()
     var myList = mutableListOf<TripModel>()
-    var getTheDatabaseListRoom = mutableListOf<TripModel>()
+
+//endregion
 
     //введеные данные пользователем обновляют карточку и добавляют ее в список
     fun getTripModelRoute(item: TripModel): MutableList<TripModel> {
@@ -51,8 +56,7 @@ class MainViewModel() : ViewModel() {
         myList = setList.toList() as MutableList<TripModel>
 
         viewModelScope.launch {
-            convertingDataAndSavingItToATable(myList)
-           // convertSavedDataFromATableToTripModel(myList)
+            convertingDataAndSavingItToATable(myList) //запускается конвертер
         }
         return myList
     }
@@ -74,7 +78,7 @@ class MainViewModel() : ViewModel() {
 
     //region КОНВЕРТЕРЫ
 
-    //конвертирую полученные данные в List<RouteEntity> и передает в таблицу Room
+    //конвертируем полученные данные в List<RouteEntity> и передаем в Room
     private suspend fun convertingDataAndSavingItToATable(list: MutableList<TripModel>) {
         val roomDatabaseList = mutableListOf<RouteEntity>()
         for (i in myList) {
@@ -89,12 +93,11 @@ class MainViewModel() : ViewModel() {
             )
             roomDatabaseList.add(routeEntity)
             repository.addRoomRoute(roomDatabaseList)
-            roomLiveData.value = roomDatabaseList
         }
     }
 
-   // конвертирует данные из Room таблицы обратно в TripModel и достает из Room
-    fun convertSavedDataFromATableToTripModel(list: List<RouteEntity>): MutableList<TripModel> {
+    // конвертируем данные из таблицы Room обратно в List<TripModel> и достаем для отображения
+    fun convertingSavedDataFromATableToTripModel(list: List<RouteEntity>): MutableList<TripModel> {
         for (i in list) {
             val itemExtractedDataFromRoom = TripModel(
                 date = i.date,
@@ -108,9 +111,7 @@ class MainViewModel() : ViewModel() {
             setList.add(itemExtractedDataFromRoom)
             myList = setList.toList() as MutableList<TripModel>
         }
-       return myList
+        return myList
     }
-
-
     //endregion
 }

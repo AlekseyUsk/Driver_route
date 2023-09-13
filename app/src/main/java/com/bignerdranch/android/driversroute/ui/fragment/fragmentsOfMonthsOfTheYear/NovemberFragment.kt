@@ -33,20 +33,23 @@ class NovemberFragment : Fragment() {
 
         viewModel.mvCurrentDate.toInt()
         viewModel.setTripModelRoute()
+        init()
         addACard()
     }
 
-    private fun addACard() = with(binding) {
-        rvNovember.layoutManager = LinearLayoutManager(activity)
-        adapter = AdapterRV()
-        rvNovember.adapter = adapter
-
+    private fun addACard(){
         viewModel.myLiveData.observe(viewLifecycleOwner) {
             if (viewModel.mvCurrentDate.toInt() == NOVEMBER) {
                 viewModel.getTripModelRoute(it)
                 adapter.submitList(viewModel.myList)
             }
         }
+    }
+
+    private fun init() = with(binding) {
+        rvNovember.layoutManager = LinearLayoutManager(activity)
+        adapter = AdapterRV()
+        rvNovember.adapter = adapter
     }
 
     companion object {

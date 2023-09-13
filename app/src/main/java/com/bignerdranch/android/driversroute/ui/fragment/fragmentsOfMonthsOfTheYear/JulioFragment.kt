@@ -33,20 +33,23 @@ class JulioFragment : Fragment() {
 
         viewModel.mvCurrentDate.toInt()
         viewModel.setTripModelRoute()
+        init()
         addACard()
     }
 
-    private fun addACard() = with(binding) {
-        rvJulio.layoutManager = LinearLayoutManager(activity)
-        adapter = AdapterRV()
-        rvJulio.adapter = adapter
-
+    private fun addACard() {
         viewModel.myLiveData.observe(viewLifecycleOwner) {
             if (viewModel.mvCurrentDate.toInt() == JULIO) {
                 viewModel.getTripModelRoute(it)
                 adapter.submitList(viewModel.myList)
             }
         }
+    }
+
+    private fun init() = with(binding) {
+        rvJulio.layoutManager = LinearLayoutManager(activity)
+        adapter = AdapterRV()
+        rvJulio.adapter = adapter
     }
 
     companion object {

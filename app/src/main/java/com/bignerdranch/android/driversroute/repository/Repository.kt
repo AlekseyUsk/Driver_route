@@ -7,8 +7,6 @@ import com.bignerdranch.android.driversroute.room.RouteEntity
 
 class Repository() : RepositoryRoom {
 
-
-
     override suspend fun addRoomRoute(list: List<RouteEntity>) {
         super.addRoomRoute(list)
     }
@@ -16,6 +14,5 @@ class Repository() : RepositoryRoom {
     override suspend fun getRoomRoute(): LiveData<List<RouteEntity>> {
         return super.getRoomRoute()
     }
-
 
 }
