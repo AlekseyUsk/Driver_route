@@ -7,13 +7,15 @@ import com.bignerdranch.android.driversroute.room.RouteEntity
 
 class Repository() : RepositoryRoom {
 
-    override suspend fun addRoomRoute(list: List<RouteEntity>) = MyApp.getRouteDataBase().routeDao().insertAll(list)
 
 
-    override suspend fun getRoomRoute() {}
+    override suspend fun addRoomRoute(list: List<RouteEntity>) {
+        super.addRoomRoute(list)
+    }
 
-// MyApp.getRouteDataBase().routeDao().getAll(list)
-
+    override suspend fun getRoomRoute(): LiveData<List<RouteEntity>> {
+        return super.getRoomRoute()
+    }
 
 
 }

@@ -9,6 +9,7 @@ import com.bignerdranch.android.driversroute.room.RouteEntity
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.List
 
 class MainViewModel() : ViewModel() {
 
@@ -27,9 +28,11 @@ class MainViewModel() : ViewModel() {
     val getFinalHours = MutableLiveData<String>("")
 
     val myLiveData = MutableLiveData<TripModel>()
+    val roomLiveData = MutableLiveData<List<RouteEntity>>()
 
     var setList = mutableSetOf<TripModel>()
     var myList = mutableListOf<TripModel>()
+    var getTheDatabaseListRoom = mutableListOf<TripModel>()
 
     //введеные данные пользователем обновляют карточку и добавляют ее в список
     fun getTripModelRoute(item: TripModel): MutableList<TripModel> {
@@ -49,6 +52,7 @@ class MainViewModel() : ViewModel() {
 
         viewModelScope.launch {
             convertingDataAndSavingItToATable(myList)
+           // convertSavedDataFromATableToTripModel(myList)
         }
         return myList
     }
@@ -70,9 +74,9 @@ class MainViewModel() : ViewModel() {
 
     //region КОНВЕРТЕРЫ
 
-    //конвертирую полученные данные в List<RouteEntity> для передачи в таблицу Room
+    //конвертирую полученные данные в List<RouteEntity> и передает в таблицу Room
     private suspend fun convertingDataAndSavingItToATable(list: MutableList<TripModel>) {
-        val roomList = mutableListOf<RouteEntity>()
+        val roomDatabaseList = mutableListOf<RouteEntity>()
         for (i in myList) {
             val routeEntity = RouteEntity(
                 date = i.date,
@@ -83,27 +87,30 @@ class MainViewModel() : ViewModel() {
                 endOfWork = i.endOfWork,
                 working = i.working, finalHours = i.finalHours
             )
-            roomList.add(routeEntity)
-            repository.addRoomRoute(roomList)
+            roomDatabaseList.add(routeEntity)
+            repository.addRoomRoute(roomDatabaseList)
+            roomLiveData.value = roomDatabaseList
         }
     }
 
-    //конвертирует данные из Room таблицы /FIX пока незадействовал
-    private fun convertToEntity(list: List<RouteEntity>): List<TripModel> {
-        val routeTripModel = mutableListOf<TripModel>()
-        return list.map {
-            val tripModel = TripModel(
-                date = it.date,
-                time = it.time,
-                assistant = it.assistant,
-                route = it.route,
-                em = it.em,
-                endOfWork = it.endOfWork,
-                working = it.working, finalHours = it.finalHours
+   // конвертирует данные из Room таблицы обратно в TripModel и достает из Room
+    fun convertSavedDataFromATableToTripModel(list: List<RouteEntity>): MutableList<TripModel> {
+        for (i in list) {
+            val itemExtractedDataFromRoom = TripModel(
+                date = i.date,
+                time = i.time,
+                assistant = i.assistant,
+                route = i.route,
+                em = i.em,
+                endOfWork = i.endOfWork,
+                working = i.working, finalHours = i.finalHours
             )
-            return routeTripModel
+            setList.add(itemExtractedDataFromRoom)
+            myList = setList.toList() as MutableList<TripModel>
         }
+       return myList
     }
+
 
     //endregion
 }

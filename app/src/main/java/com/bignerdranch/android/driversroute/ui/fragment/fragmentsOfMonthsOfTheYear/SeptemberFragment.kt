@@ -6,15 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
-import com.bignerdranch.android.driversroute.R
-import com.bignerdranch.android.driversroute.databinding.FragmentAprilBinding
 import com.bignerdranch.android.driversroute.databinding.FragmentSeptemberBinding
+import com.bignerdranch.android.driversroute.repository.Repository
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
+import kotlinx.coroutines.launch
 
 
 class SeptemberFragment : Fragment() {
+
+    private val repository = Repository()
 
     private lateinit var binding: FragmentSeptemberBinding
     private val viewModel: MainViewModel by activityViewModels()
@@ -30,6 +33,15 @@ class SeptemberFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.viewModelScope.launch {
+            repository.getRoomRoute().observe(viewLifecycleOwner) {
+                viewModel.convertSavedDataFromATableToTripModel(it).let {
+                    adapter.submitList(it)
+                }
+
+                }
+            }
 
         viewModel.mvCurrentDate.toInt()
         viewModel.setTripModelRoute()

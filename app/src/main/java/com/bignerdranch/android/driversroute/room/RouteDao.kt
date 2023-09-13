@@ -7,19 +7,19 @@ import androidx.room.*
 interface RouteDao {
 
     @Insert()
-   fun insertAll(list: List<RouteEntity>)
+   suspend fun insertAll(list: List<RouteEntity>)
 
-   @Insert()
-   fun insert(newRouteEntity: RouteEntity)
+    @Insert()
+   suspend fun insert(newRouteEntity: RouteEntity)
 
-   @Query("SELECT * FROM route_entity_table")
-   fun getAll() : LiveData<List<RouteEntity>>
+    @Query("SELECT * FROM route_entity_table")
+   fun getAll(): LiveData<List<RouteEntity>>
 
     @Update
-   fun update(routeEntity: RouteEntity)
+   suspend fun update(routeEntity: RouteEntity)
 
     @Delete
-   fun delete(routeEntity: RouteEntity)
+   suspend fun delete(routeEntity: RouteEntity)
 
 }
 //onConflict = OnConflictStrategy.REPLACE в инсерт вставишь
