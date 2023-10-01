@@ -114,13 +114,12 @@
                 app:layout_constraintStart_toStartOf="@+id/dateEntry"
                 app:layout_constraintTop_toBottomOf="@+id/dateEntry" />
 
-            <TextView
+            <AutoCompleteTextView
                 android:id="@+id/turnout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="ЯВКА"
+                android:hint="выберите месяц"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -130,6 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="введите дату явки"
+                android:maxLength="2"
                 android:inputType="date"
                 app:layout_constraintStart_toStartOf="@+id/turnout"
                 app:layout_constraintTop_toBottomOf="@+id/turnout" />

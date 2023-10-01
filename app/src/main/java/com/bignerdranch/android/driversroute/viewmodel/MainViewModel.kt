@@ -1,11 +1,8 @@
 package com.bignerdranch.android.driversroute.viewmodel
 
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bignerdranch.android.driversroute.AdapterRV
 import com.bignerdranch.android.driversroute.model.TripModel
 import com.bignerdranch.android.driversroute.repository.Repository
 import com.bignerdranch.android.driversroute.room.RouteEntity
@@ -22,6 +19,7 @@ class MainViewModel() : ViewModel() {
     private val mvSdf = SimpleDateFormat("M")
     val mvCurrentDate: String = mvSdf.format(Date())
 
+    val getMonth = MutableLiveData<String>("")
     val getDate = MutableLiveData<String>("")
     val getTime = MutableLiveData<String>("")
     val getAssistant = MutableLiveData<String>("")
@@ -50,7 +48,8 @@ class MainViewModel() : ViewModel() {
             em = item.em,
             endOfWork = item.endOfWork,
             working = item.working,
-            finalHours = item.finalHours
+            finalHours = item.finalHours,
+            turnoutMonth = item.turnoutMonth
         )
         setList.add(itemUpdate)
         myList = setList.toList() as MutableList<TripModel>
@@ -64,14 +63,15 @@ class MainViewModel() : ViewModel() {
     //пользователь вводит данные,LiveData наблюдает за изменениями
     fun setTripModelRoute() {
         val itemStart = TripModel(
-            date = "Дата/ ${getDate.value}",
+            date = "${getDate.value}",
             time = "время явки/ ${getTime.value}",
             assistant = "ТчПМ/ ${getAssistant.value}",
             route = "ПЛЕЧО/ ${getRoute.value}",
             em = "ЭМ/ ${getEm.value}",
             endOfWork = "ОР/ ${getEndOfWork.value}",
             working = "Рабочее время за поездку/ ${getWorking.value}",
-            finalHours = "ВСЕГО ЧАСОВ ЗА МЕСЯЦ/ ${getFinalHours.value}"
+            finalHours = "ВСЕГО ЧАСОВ ЗА МЕСЯЦ/ ${getFinalHours.value}",
+            turnoutMonth = "${getMonth.value}"
         )
         myLiveData.value = itemStart
     }
@@ -89,7 +89,9 @@ class MainViewModel() : ViewModel() {
                 route = i.route,
                 em = i.em,
                 endOfWork = i.endOfWork,
-                working = i.working, finalHours = i.finalHours
+                working = i.working,
+                finalHours = i.finalHours,
+                currentMonth = i.turnoutMonth
             )
             roomDatabaseList.add(routeEntity)
             repository.addRoomRoute(roomDatabaseList)
@@ -106,7 +108,9 @@ class MainViewModel() : ViewModel() {
                 route = i.route,
                 em = i.em,
                 endOfWork = i.endOfWork,
-                working = i.working, finalHours = i.finalHours
+                working = i.working,
+                finalHours = i.finalHours,
+                turnoutMonth = i.currentMonth
             )
             setList.add(itemExtractedDataFromRoom)
             myList = setList.toList() as MutableList<TripModel>

@@ -100,5 +100,6 @@ class MainFragment : Fragment() {
         getEndOfWork.value = MainFragmentArgs.fromBundle(requireArguments()).receivedEndOfWork
         getWorking.value = MainFragmentArgs.fromBundle(requireArguments()).receivedWorking
         getFinalHours.value = MainFragmentArgs.fromBundle(requireArguments()).receivedFinalHours
+        getMonth.value = MainFragmentArgs.fromBundle(requireArguments()).receivedMonth
     }
 }

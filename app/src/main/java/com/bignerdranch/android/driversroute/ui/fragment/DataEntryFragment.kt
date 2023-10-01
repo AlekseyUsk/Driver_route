@@ -30,6 +30,7 @@ class DataEntryFragment() : Fragment() {
     private lateinit var editEndOfWork: String
     private lateinit var editWorking: String
     private lateinit var editFinalHours: String
+    private lateinit var editMonth: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +56,7 @@ class DataEntryFragment() : Fragment() {
         editEndOfWork = endOfWork.text.toString()
         editWorking = working.text.toString()
         editFinalHours = finalHours.text.toString()
+        editMonth = turnout.text.toString()
 
         val action = DataEntryFragmentDirections.actionDataEntryFragmentToMainFragment(
             editDate,
@@ -65,6 +67,7 @@ class DataEntryFragment() : Fragment() {
             editEndOfWork,
             editWorking,
             editFinalHours,
+            editMonth
         )
         view?.findNavController()?.navigate(action)
     }
@@ -88,5 +91,11 @@ class DataEntryFragment() : Fragment() {
             ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, autoListAssistant)
         assistant.threshold = 0
         assistant.setAdapter(autoAssistantAdapter)
+
+        val autoListMonth = resources.getStringArray(R.array.month)
+        val autoMonthAdapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, autoListMonth)
+        turnout.threshold = 0
+        turnout.setAdapter(autoMonthAdapter)
     }
 }

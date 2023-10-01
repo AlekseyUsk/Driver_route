@@ -24,6 +24,7 @@ class AdapterRV : ListAdapter<TripModel, AdapterRV.Holder>(Comparator()) {
             endOfWorkItem.text = item.endOfWork
             workingHoursPerTripItem.text = item.working
             finalHoursItem.text = item.finalHours
+            turnoutItem.text = item.turnoutMonth
         }
     }
 

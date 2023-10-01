@@ -45,6 +45,10 @@
             android:name="receivedFinalHours"
             app:argType="string"
             android:defaultValue=""/>
+        <argument
+            android:name="receivedMonth"
+            app:argType="string"
+            android:defaultValue=""/>
     </fragment>
     <fragment
         android:id="@+id/dataEntryFragment"

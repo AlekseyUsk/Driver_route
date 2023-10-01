@@ -24,5 +24,7 @@ data class RouteEntity(
     @ColumnInfo(name = "working_route")
     var working: String,
     @ColumnInfo(name = "finalHours_route")
-    var finalHours: String
+    var finalHours: String,
+    @ColumnInfo(name = "current_month_route")
+    var currentMonth: String
 )

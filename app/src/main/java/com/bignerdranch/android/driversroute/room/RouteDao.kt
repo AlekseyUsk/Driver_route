@@ -7,19 +7,22 @@ import androidx.room.*
 interface RouteDao {
 
     @Insert()
-   suspend fun insertAll(list: List<RouteEntity>)
+    suspend fun insertAll(list: List<RouteEntity>)
 
     @Insert()
-   suspend fun insert(newRouteEntity: RouteEntity)
+    suspend fun insert(newRouteEntity: RouteEntity)
 
     @Query("SELECT * FROM route_entity_table")
-   fun getAll(): LiveData<List<RouteEntity>>
+    fun getAll(): LiveData<List<RouteEntity>>
+
+//    @Query("SELECT * FROM route_entity_table WHERE date_route == month")
+//    fun getMonthlyList(month: Int): LiveData<List<RouteEntity>>
 
     @Update
-   suspend fun update(routeEntity: RouteEntity)
+    suspend fun update(routeEntity: RouteEntity)
 
     @Delete
-   suspend fun delete(routeEntity: RouteEntity)
+    suspend fun delete(routeEntity: RouteEntity)
 
 }
 //onConflict = OnConflictStrategy.REPLACE в инсерт вставишь
