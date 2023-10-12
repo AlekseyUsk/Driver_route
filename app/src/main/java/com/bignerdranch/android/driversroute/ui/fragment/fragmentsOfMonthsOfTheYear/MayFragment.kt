@@ -6,15 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentAprilBinding
 import com.bignerdranch.android.driversroute.databinding.FragmentMayBinding
+import com.bignerdranch.android.driversroute.repository.Repository
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
+import kotlinx.coroutines.launch
 
 
 class MayFragment : Fragment() {
+
+    private val repository = Repository()
 
     private lateinit var binding: FragmentMayBinding
     private val viewModel: MainViewModel by activityViewModels()
@@ -31,7 +36,6 @@ class MayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.mvCurrentDate.toInt()
         viewModel.setTripModelRoute()
         init()
         addACard()
@@ -39,7 +43,10 @@ class MayFragment : Fragment() {
 
     private fun addACard() {
         viewModel.myLiveData.observe(viewLifecycleOwner) {
-            if (viewModel.mvCurrentDate.toInt() == MAY) {
+            viewModel.viewModelScope.launch {
+                repository.getMayRoomRoute().observe(viewLifecycleOwner) {
+                    viewModel.convertingSavedDataFromATableToTripModel(it)
+                }
                 viewModel.writeANewCard(it)
                 adapter.submitList(viewModel.myList)
             }

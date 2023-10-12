@@ -33,20 +33,16 @@ class AgostoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.mvCurrentDate.toInt()
         viewModel.setTripModelRoute()
         init()
         addACard()
     }
 
-    private fun addACard(){
-        viewModel.myLiveData.observe(viewLifecycleOwner) {
+    private fun addACard() {
+        viewModel.myLiveData.observe(viewLifecycleOwner){
             viewModel.viewModelScope.launch {
-                    repository.getAgostoRoomRoute().observe(viewLifecycleOwner) {
-                        viewModel.convertingSavedDataFromATableToTripModel(it).let {
-                            adapter.submitList(it)
-                        }
-
+                repository.getAgostoRoomRoute().observe(viewLifecycleOwner) {
+                    viewModel.convertingSavedDataFromATableToTripModel(it)
                 }
                 viewModel.writeANewCard(it)
                 adapter.submitList(viewModel.myList)
@@ -54,7 +50,7 @@ class AgostoFragment : Fragment() {
         }
     }
 
-    private fun init() = with(binding){
+    private fun init() = with(binding) {
         rvAgosto.layoutManager = LinearLayoutManager(activity)
         adapter = AdapterRV()
         rvAgosto.adapter = adapter

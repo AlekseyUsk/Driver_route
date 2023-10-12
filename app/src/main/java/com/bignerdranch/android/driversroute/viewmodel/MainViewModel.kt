@@ -1,18 +1,14 @@
 package com.bignerdranch.android.driversroute.viewmodel
 
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bignerdranch.android.driversroute.model.TripModel
 import com.bignerdranch.android.driversroute.repository.Repository
 import com.bignerdranch.android.driversroute.room.RouteEntity
-import com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear.JanuaryFragment
-import com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear.OctoberFragment
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.List
 
 class MainViewModel() : ViewModel() {
 
@@ -34,14 +30,16 @@ class MainViewModel() : ViewModel() {
 
     val myLiveData = MutableLiveData<TripModel>()
 
-    //листы для перегрпировки введыных users данных
-    var setList = mutableSetOf<TripModel>()
+    //листы для перегрпировки введыных пользователем данных
+    private var setList = mutableSetOf<TripModel>()
     var myList = mutableListOf<TripModel>()
 
 //endregion
 
     //пользователь ввел данные,в setTripModelRoute()->LiveData наблюдает за изменениями и
     //введеные данные пользователем обновляют карточку и добавляют ее в список
+    // без этой фун небудет сохранять в room
+    // паралельно работает с функцией setTripModelRoute() когда подьзователь вводит данные
     fun writeANewCard(item: TripModel): MutableList<TripModel> {
         val itemUpdate = TripModel(
             date = item.date,
@@ -58,7 +56,7 @@ class MainViewModel() : ViewModel() {
         myList = setList.toList() as MutableList<TripModel>
 
         viewModelScope.launch {
-            convertingDataAndSavingItToATable(myList) //запускается конвертер
+            convertingDataAndSavingItToATable(myList) //запускается конвертер для сохр в room
         }
         return myList
     }

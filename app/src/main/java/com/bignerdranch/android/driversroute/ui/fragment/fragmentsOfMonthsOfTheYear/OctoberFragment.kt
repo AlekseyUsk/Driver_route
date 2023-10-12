@@ -36,23 +36,20 @@ class OctoberFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.mvCurrentDate.toInt()
         viewModel.setTripModelRoute()
         init()
         addACard()
     }
 
     private fun addACard() {
-        viewModel.myLiveData.observe(viewLifecycleOwner) { tripModel ->
+        viewModel.myLiveData.observe(viewLifecycleOwner) {
             viewModel.viewModelScope.launch {
                 repository.getOctoberRoomRoute().observe(viewLifecycleOwner) {
-                    viewModel.convertingSavedDataFromATableToTripModel(it).let {
-                        adapter.submitList(it)
-                    }
+                    viewModel.convertingSavedDataFromATableToTripModel(it)
                 }
+                viewModel.writeANewCard(it)
+                adapter.submitList(viewModel.myList)
             }
-
-            viewModel.writeANewCard(tripModel)
         }
     }
 
@@ -66,6 +63,5 @@ class OctoberFragment : Fragment() {
         @JvmStatic
         fun newInstance() = OctoberFragment()
         const val OCTOBER = 10
-        const val OCTOBER_STR = "октябрь" //думаю как использовать
     }
 }

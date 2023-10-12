@@ -34,21 +34,16 @@ class SeptemberFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.mvCurrentDate.toInt()
         viewModel.setTripModelRoute()
         init()
         addACard()
     }
 
-    private fun addACard(){
+    private fun addACard() {
         viewModel.myLiveData.observe(viewLifecycleOwner) {
-            if (viewModel.mvCurrentDate.toInt() == SEPTEMBER) {
-                viewModel.viewModelScope.launch {
-                    repository.getRoomRoute().observe(viewLifecycleOwner) {
-                        viewModel.convertingSavedDataFromATableToTripModel(it).let {
-                            adapter.submitList(it)
-                        }
-                    }
+            viewModel.viewModelScope.launch {
+                repository.getSeptemberRoomRoute().observe(viewLifecycleOwner) {
+                    viewModel.convertingSavedDataFromATableToTripModel(it)
                 }
                 viewModel.writeANewCard(it)
                 adapter.submitList(viewModel.myList)
@@ -56,7 +51,7 @@ class SeptemberFragment : Fragment() {
         }
     }
 
-    private fun init() = with(binding){
+    private fun init() = with(binding) {
         rvSeptember.layoutManager = LinearLayoutManager(activity)
         adapter = AdapterRV()
         rvSeptember.adapter = adapter
