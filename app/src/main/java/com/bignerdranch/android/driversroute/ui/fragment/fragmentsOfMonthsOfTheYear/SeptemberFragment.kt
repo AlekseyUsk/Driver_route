@@ -50,7 +50,7 @@ class SeptemberFragment : Fragment() {
                         }
                     }
                 }
-                viewModel.getTripModelRoute(it)
+                viewModel.writeANewCard(it)
                 adapter.submitList(viewModel.myList)
             }
         }

@@ -39,7 +39,7 @@ class JanuaryFragment : Fragment() {
     private fun addACard() {
         viewModel.myLiveData.observe(viewLifecycleOwner) {
             if (viewModel.mvCurrentDate.toInt() == JANUARY) {
-                viewModel.getTripModelRoute(it)
+                viewModel.writeANewCard(it)
                 adapter.submitList(viewModel.myList)
             }
         }

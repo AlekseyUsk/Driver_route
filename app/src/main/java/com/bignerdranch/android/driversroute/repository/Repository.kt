@@ -1,8 +1,6 @@
 package com.bignerdranch.android.driversroute.repository
 
 import androidx.lifecycle.LiveData
-import com.bignerdranch.android.driversroute.MyApp
-import com.bignerdranch.android.driversroute.model.TripModel
 import com.bignerdranch.android.driversroute.room.RouteEntity
 
 class Repository() : RepositoryRoom {
@@ -15,4 +13,7 @@ class Repository() : RepositoryRoom {
         return super.getRoomRoute()
     }
 
+    override suspend fun getAgostoRoomRoute(): LiveData<List<RouteEntity>> {
+        return super.getAgostoRoomRoute()
+    }
 }

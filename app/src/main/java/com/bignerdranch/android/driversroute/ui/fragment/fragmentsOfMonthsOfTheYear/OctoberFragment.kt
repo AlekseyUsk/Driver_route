@@ -43,18 +43,16 @@ class OctoberFragment : Fragment() {
     }
 
     private fun addACard(){
-        viewModel.myLiveData.observe(viewLifecycleOwner) {
-            if (viewModel.mvCurrentDate.toInt() == OCTOBER) {
+        viewModel.myLiveData.observe(viewLifecycleOwner) {tripModel->
                 viewModel.viewModelScope.launch {
-                    repository.getRoomRoute().observe(viewLifecycleOwner) {
+                    repository.getAgostoRoomRoute().observe(viewLifecycleOwner) {
                         viewModel.convertingSavedDataFromATableToTripModel(it).let {
-                            adapter.submitList(it)
+                                adapter.submitList(it)
                         }
                     }
                 }
-                viewModel.getTripModelRoute(it)
-                adapter.submitList(viewModel.myList)
-            }
+
+            viewModel.writeANewCard(tripModel)
         }
     }
 
@@ -68,5 +66,6 @@ class OctoberFragment : Fragment() {
         @JvmStatic
         fun newInstance() = OctoberFragment()
         const val OCTOBER = 10
+        const val OCTOBER_STR = "октябрь" //думаю как использовать
     }
 }

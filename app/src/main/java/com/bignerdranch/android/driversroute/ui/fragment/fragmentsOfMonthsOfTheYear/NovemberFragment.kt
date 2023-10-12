@@ -6,15 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentNovemberBinding
 import com.bignerdranch.android.driversroute.databinding.FragmentSeptemberBinding
+import com.bignerdranch.android.driversroute.repository.Repository
+import com.bignerdranch.android.driversroute.room.RouteEntity
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
+import kotlinx.coroutines.launch
 
 
 class NovemberFragment : Fragment() {
+
+    private val repository = Repository()
 
     private lateinit var binding: FragmentNovemberBinding
     private val viewModel: MainViewModel by activityViewModels()
@@ -37,12 +43,17 @@ class NovemberFragment : Fragment() {
         addACard()
     }
 
-    private fun addACard(){
-        viewModel.myLiveData.observe(viewLifecycleOwner) {
-            if (viewModel.mvCurrentDate.toInt() == NOVEMBER) {
-                viewModel.getTripModelRoute(it)
-                adapter.submitList(viewModel.myList)
-            }
+    private fun addACard() {
+        viewModel.myLiveData.observe(viewLifecycleOwner) { tripModel ->
+                viewModel.viewModelScope.launch {
+                    repository.getRoomRoute().observe(viewLifecycleOwner) {
+                        viewModel.convertingSavedDataFromATableToTripModel(it).let {
+                            adapter.submitList(it)
+                        }
+                    }
+                }
+
+            viewModel.writeANewCard(tripModel)
         }
     }
 
@@ -56,5 +67,6 @@ class NovemberFragment : Fragment() {
         @JvmStatic
         fun newInstance() = NovemberFragment()
         const val NOVEMBER = 11
+        const val NOVEMBER_STR = "ноябрь"
     }
 }

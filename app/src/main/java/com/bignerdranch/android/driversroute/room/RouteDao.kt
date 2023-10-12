@@ -15,8 +15,8 @@ interface RouteDao {
     @Query("SELECT * FROM route_entity_table")
     fun getAll(): LiveData<List<RouteEntity>>
 
-//    @Query("SELECT * FROM route_entity_table WHERE date_route == month")
-//    fun getMonthlyList(month: Int): LiveData<List<RouteEntity>>
+    @Query("SELECT * FROM route_entity_table WHERE current_month_route == :month")
+    fun getSpecificMonth(month: String): LiveData<List<RouteEntity>>
 
     @Update
     suspend fun update(routeEntity: RouteEntity)
@@ -26,3 +26,4 @@ interface RouteDao {
 
 }
 //onConflict = OnConflictStrategy.REPLACE в инсерт вставишь
+//"SELECT current_month_route FROM route_entity_table" запрос по месяцам

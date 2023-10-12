@@ -1,11 +1,14 @@
 package com.bignerdranch.android.driversroute.viewmodel
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bignerdranch.android.driversroute.model.TripModel
 import com.bignerdranch.android.driversroute.repository.Repository
 import com.bignerdranch.android.driversroute.room.RouteEntity
+import com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear.JanuaryFragment
+import com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear.OctoberFragment
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -37,9 +40,9 @@ class MainViewModel() : ViewModel() {
 
 //endregion
 
+    //пользователь ввел данные,в setTripModelRoute()->LiveData наблюдает за изменениями и
     //введеные данные пользователем обновляют карточку и добавляют ее в список
-    fun getTripModelRoute(item: TripModel): MutableList<TripModel> {
-
+    fun writeANewCard(item: TripModel): MutableList<TripModel> {
         val itemUpdate = TripModel(
             date = item.date,
             time = item.time,

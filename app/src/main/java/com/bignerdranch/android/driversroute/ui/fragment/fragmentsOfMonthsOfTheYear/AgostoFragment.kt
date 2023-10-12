@@ -41,15 +41,14 @@ class AgostoFragment : Fragment() {
 
     private fun addACard(){
         viewModel.myLiveData.observe(viewLifecycleOwner) {
-            if (viewModel.mvCurrentDate.toInt() == AGOSTO) {
-                viewModel.viewModelScope.launch {
-                    repository.getRoomRoute().observe(viewLifecycleOwner) {
+            viewModel.viewModelScope.launch {
+                    repository.getAgostoRoomRoute().observe(viewLifecycleOwner) {
                         viewModel.convertingSavedDataFromATableToTripModel(it).let {
                             adapter.submitList(it)
                         }
-                    }
+
                 }
-                viewModel.getTripModelRoute(it)
+                viewModel.writeANewCard(it)
                 adapter.submitList(viewModel.myList)
             }
         }
