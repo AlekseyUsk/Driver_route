@@ -4,7 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="month">
-        <item>Январь</item>
+        <item>январь</item>
         <item>февраль</item>
         <item>март</item>
         <item>апрель</item>

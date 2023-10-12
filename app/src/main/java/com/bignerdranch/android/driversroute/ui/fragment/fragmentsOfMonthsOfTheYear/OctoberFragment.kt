@@ -42,15 +42,15 @@ class OctoberFragment : Fragment() {
         addACard()
     }
 
-    private fun addACard(){
-        viewModel.myLiveData.observe(viewLifecycleOwner) {tripModel->
-                viewModel.viewModelScope.launch {
-                    repository.getAgostoRoomRoute().observe(viewLifecycleOwner) {
-                        viewModel.convertingSavedDataFromATableToTripModel(it).let {
-                                adapter.submitList(it)
-                        }
+    private fun addACard() {
+        viewModel.myLiveData.observe(viewLifecycleOwner) { tripModel ->
+            viewModel.viewModelScope.launch {
+                repository.getOctoberRoomRoute().observe(viewLifecycleOwner) {
+                    viewModel.convertingSavedDataFromATableToTripModel(it).let {
+                        adapter.submitList(it)
                     }
                 }
+            }
 
             viewModel.writeANewCard(tripModel)
         }

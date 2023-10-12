@@ -9,5 +9,9 @@ interface RepositoryRoom {
 
    suspend fun getRoomRoute() = MyApp.getRouteDataBase().routeDao().getAll()
 
-   suspend fun getAgostoRoomRoute() = MyApp.getRouteDataBase().routeDao().getSpecificMonth("август")
+   suspend fun getAgostoRoomRoute() = MyApp.getRouteDataBase().routeDao().getAgosto("август")
+
+   suspend fun getOctoberRoomRoute() = MyApp.getRouteDataBase().routeDao().getOctober("октябрь")
+
+   suspend fun getNovemberRoomRoute() = MyApp.getRouteDataBase().routeDao().getNovember("ноябрь")
 }

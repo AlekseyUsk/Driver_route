@@ -15,8 +15,14 @@ interface RouteDao {
     @Query("SELECT * FROM route_entity_table")
     fun getAll(): LiveData<List<RouteEntity>>
 
-    @Query("SELECT * FROM route_entity_table WHERE current_month_route == :month")
-    fun getSpecificMonth(month: String): LiveData<List<RouteEntity>>
+    @Query("SELECT * FROM route_entity_table WHERE current_month_route == :август")
+    fun getAgosto(август: String): LiveData<List<RouteEntity>>
+
+    @Query("SELECT * FROM route_entity_table WHERE current_month_route == :октябрь")
+    fun getOctober(октябрь: String): LiveData<List<RouteEntity>>
+
+    @Query("SELECT * FROM route_entity_table WHERE current_month_route == :ноябрь")
+    fun getNovember(ноябрь: String): LiveData<List<RouteEntity>>
 
     @Update
     suspend fun update(routeEntity: RouteEntity)

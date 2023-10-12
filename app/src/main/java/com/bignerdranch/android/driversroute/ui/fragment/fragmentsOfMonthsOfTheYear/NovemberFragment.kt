@@ -46,7 +46,7 @@ class NovemberFragment : Fragment() {
     private fun addACard() {
         viewModel.myLiveData.observe(viewLifecycleOwner) { tripModel ->
                 viewModel.viewModelScope.launch {
-                    repository.getRoomRoute().observe(viewLifecycleOwner) {
+                    repository.getNovemberRoomRoute().observe(viewLifecycleOwner) {
                         viewModel.convertingSavedDataFromATableToTripModel(it).let {
                             adapter.submitList(it)
                         }

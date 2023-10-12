@@ -16,4 +16,12 @@ class Repository() : RepositoryRoom {
     override suspend fun getAgostoRoomRoute(): LiveData<List<RouteEntity>> {
         return super.getAgostoRoomRoute()
     }
+
+    override suspend fun getOctoberRoomRoute(): LiveData<List<RouteEntity>> {
+        return super.getOctoberRoomRoute()
+    }
+
+    override suspend fun getNovemberRoomRoute(): LiveData<List<RouteEntity>> {
+        return super.getNovemberRoomRoute()
+    }
 }
