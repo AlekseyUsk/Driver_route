@@ -37,24 +37,18 @@ class NovemberFragment : Fragment() {
         viewModel.setTripModelRoute()
         init()
         addACard()
-      //  exit()
+      //  extractionRoom()
     }
 
     private fun addACard() {
         viewModel.myLiveData.observe(viewLifecycleOwner) { tripModel ->
             if (tripModel.turnoutMonth == NOVEMBER_STR){
-                viewModel.writeANewCard(tripModel).let {
-                    for (i in it){
-                        if (i.turnoutMonth == NOVEMBER_STR){
-                            adapter.submitList(it)
-                        }
-                    }
-                }
+                viewModel.writeANewCard(tripModel)
             }
         }
     }
 
-   private fun exit() {
+   private fun extractionRoom() {
         viewModel.viewModelScope.launch {
             repository.getNovemberRoomRoute().observe(viewLifecycleOwner) {
                 viewModel.convertingSavedDataFromATableToTripModel(it).let {
