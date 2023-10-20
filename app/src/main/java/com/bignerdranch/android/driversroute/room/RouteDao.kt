@@ -7,29 +7,27 @@ import androidx.room.*
 interface RouteDao {
 
     @Insert()
-    suspend fun insertAll(list: List<RouteEntity>)
-
-    @Insert()
-    suspend fun insert(newRouteEntity: RouteEntity)
+    suspend fun insertAll(routeEntity: RouteEntity)
 
     @Query("SELECT * FROM route_entity_table")
     fun getAll(): LiveData<List<RouteEntity>>
 
-    @Query("SELECT * FROM route_entity_table WHERE current_month_route == :август")
-    fun getAgosto(август: String): LiveData<List<RouteEntity>>
+    @Query("SELECT * FROM route_entity_table WHERE current_month_route == :ago")
+    fun getAgosto(ago: String): LiveData<List<RouteEntity>>
 
-    @Query("SELECT * FROM route_entity_table WHERE current_month_route == :октябрь")
-    fun getOctober(октябрь: String): LiveData<List<RouteEntity>>
+    @Query("SELECT * FROM route_entity_table WHERE current_month_route == :okt")
+    fun getOctober(okt: String): LiveData<List<RouteEntity>>
 
-    @Query("SELECT * FROM route_entity_table WHERE current_month_route == :ноябрь")
-    fun getNovember(ноябрь: String): LiveData<List<RouteEntity>>
+    @Query("SELECT * FROM route_entity_table WHERE current_month_route == :nov")
+    fun getNovember(nov: String): LiveData<List<RouteEntity>>
 
     @Update
-    suspend fun update(routeEntity: RouteEntity)
+    suspend fun update(list: List<RouteEntity>)
 
     @Delete
     suspend fun delete(routeEntity: RouteEntity)
 
 }
 //onConflict = OnConflictStrategy.REPLACE в инсерт вставишь
-//"SELECT current_month_route FROM route_entity_table" запрос по месяцам
+//"SELECT * FROM route_entity_table WHERE current_month_route == :nov" запрос по месяцам
+//SELECT * FROM route_entity_table WHERE current_month_route LIKE :nov

@@ -35,17 +35,17 @@ class JuneFragment : Fragment() {
         viewModel.mvCurrentDate.toInt()
         viewModel.setTripModelRoute()
         init()
-        addACard()
+     //   addACard()
     }
 
-    private fun addACard() {
-        viewModel.myLiveData.observe(viewLifecycleOwner) {
-            if (viewModel.mvCurrentDate.toInt() == JUNE) {
-                viewModel.writeANewCard(it)
-                adapter.submitList(viewModel.myList)
-            }
-        }
-    }
+//    private fun addACard() {
+//        viewModel.myLiveData.observe(viewLifecycleOwner) {
+//            if (viewModel.mvCurrentDate.toInt() == JUNE) {
+//                viewModel.writeANewCard(it)
+//                adapter.submitList(viewModel.myList)
+//            }
+//        }
+//    }
 
     private fun init() = with(binding) {
         rvJune.layoutManager = LinearLayoutManager(activity)

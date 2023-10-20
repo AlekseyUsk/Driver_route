@@ -8,6 +8,7 @@ import com.bignerdranch.android.driversroute.model.TripModel
 import com.bignerdranch.android.driversroute.repository.Repository
 import com.bignerdranch.android.driversroute.room.RouteEntity
 import com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear.JanuaryFragment
+import com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear.NovemberFragment
 import com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear.OctoberFragment
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -37,6 +38,7 @@ class MainViewModel() : ViewModel() {
     //листы для перегрпировки введыных users данных
     var setList = mutableSetOf<TripModel>()
     var myList = mutableListOf<TripModel>()
+    var convertedRoomDataSheetToTripModel= mutableListOf<TripModel>()
 
 //endregion
 
@@ -63,6 +65,12 @@ class MainViewModel() : ViewModel() {
         return myList
     }
 
+//    fun save(list: MutableList<TripModel>){
+//                viewModelScope.launch {
+//            convertingDataAndSavingItToATable(myList) //запускается конвертер
+//        }
+//    }
+
     //пользователь вводит данные,LiveData наблюдает за изменениями
     fun setTripModelRoute() {
         val itemStart = TripModel(
@@ -83,7 +91,6 @@ class MainViewModel() : ViewModel() {
 
     //конвертируем полученные данные в List<RouteEntity> и передаем в Room
     private suspend fun convertingDataAndSavingItToATable(list: MutableList<TripModel>) {
-        val roomDatabaseList = mutableListOf<RouteEntity>()
         for (i in myList) {
             val routeEntity = RouteEntity(
                 date = i.date,
@@ -96,8 +103,7 @@ class MainViewModel() : ViewModel() {
                 finalHours = i.finalHours,
                 currentMonth = i.turnoutMonth
             )
-            roomDatabaseList.add(routeEntity)
-            repository.addRoomRoute(roomDatabaseList)
+            repository.addRoomRoute(routeEntity)
         }
     }
 
@@ -116,9 +122,9 @@ class MainViewModel() : ViewModel() {
                 turnoutMonth = i.currentMonth
             )
             setList.add(itemExtractedDataFromRoom)
-            myList = setList.toList() as MutableList<TripModel>
+            convertedRoomDataSheetToTripModel = setList.toList() as MutableList<TripModel>
         }
-        return myList
+        return convertedRoomDataSheetToTripModel
     }
     //endregion
 }

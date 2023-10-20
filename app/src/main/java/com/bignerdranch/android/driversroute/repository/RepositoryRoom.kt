@@ -5,7 +5,7 @@ import com.bignerdranch.android.driversroute.room.RouteEntity
 
 interface RepositoryRoom {
 
-   suspend fun addRoomRoute(list: List<RouteEntity>) = MyApp.getRouteDataBase().routeDao().insertAll(list)
+   suspend fun addRoomRoute(routeEntity: RouteEntity) = MyApp.getRouteDataBase().routeDao().insertAll(routeEntity)
 
    suspend fun getRoomRoute() = MyApp.getRouteDataBase().routeDao().getAll()
 

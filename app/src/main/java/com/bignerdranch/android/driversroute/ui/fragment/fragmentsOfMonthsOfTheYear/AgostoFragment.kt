@@ -33,23 +33,36 @@ class AgostoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.mvCurrentDate.toInt()
         viewModel.setTripModelRoute()
         init()
         addACard()
+        exit()
     }
 
-    private fun addACard(){
-        viewModel.myLiveData.observe(viewLifecycleOwner) {
-            viewModel.viewModelScope.launch {
-                    repository.getAgostoRoomRoute().observe(viewLifecycleOwner) {
-                        viewModel.convertingSavedDataFromATableToTripModel(it).let {
+    private fun addACard() {
+        viewModel.myLiveData.observe(viewLifecycleOwner) { tripModel ->
+            if (tripModel.turnoutMonth == AGOSTO_STR){
+                viewModel.writeANewCard(tripModel).let {
+                    for (i in it){
+                        if (i.turnoutMonth == AGOSTO_STR){
                             adapter.submitList(it)
                         }
-
+                    }
                 }
-                viewModel.writeANewCard(it)
-                adapter.submitList(viewModel.myList)
+            }
+        }
+    }
+
+   private fun exit() {
+        viewModel.viewModelScope.launch {
+            repository.getAgostoRoomRoute().observe(viewLifecycleOwner) {
+                viewModel.convertingSavedDataFromATableToTripModel(it).let {
+                    for (i in it) {
+                        if (i.turnoutMonth == AGOSTO_STR) {
+                            adapter.submitList(it)
+                        }
+                    }
+                }
             }
         }
     }
@@ -64,5 +77,6 @@ class AgostoFragment : Fragment() {
         @JvmStatic
         fun newInstance() = AgostoFragment()
         const val AGOSTO = 8
+        const val AGOSTO_STR = "август"
     }
 }

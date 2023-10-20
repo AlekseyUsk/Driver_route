@@ -39,22 +39,21 @@ class OctoberFragment : Fragment() {
         viewModel.mvCurrentDate.toInt()
         viewModel.setTripModelRoute()
         init()
-        addACard()
+       // addACard()
     }
 
-    private fun addACard() {
-        viewModel.myLiveData.observe(viewLifecycleOwner) { tripModel ->
-            viewModel.viewModelScope.launch {
-                repository.getOctoberRoomRoute().observe(viewLifecycleOwner) {
-                    viewModel.convertingSavedDataFromATableToTripModel(it).let {
-                        adapter.submitList(it)
-                    }
-                }
-            }
-
-            viewModel.writeANewCard(tripModel)
-        }
-    }
+//    private fun addACard() {
+//        viewModel.viewModelScope.launch {
+//            repository.getOctoberRoomRoute().observe(viewLifecycleOwner) {
+//                viewModel.convertingSavedDataFromATableToTripModel(it).let {
+//                    viewModel.myLiveData.observe(viewLifecycleOwner) { tripModel ->
+//                        viewModel.writeANewCard(tripModel)
+//                        adapter.submitList(it)
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     private fun init() = with(binding) {
         rvOctober.layoutManager = LinearLayoutManager(activity)
