@@ -1,7 +1,5 @@
 package com.bignerdranch.android.driversroute.model
 
-import androidx.lifecycle.LiveData
-
 data class TripModel(
     var date: String,
     var time: String,

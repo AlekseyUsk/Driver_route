@@ -2,20 +2,16 @@ package com.bignerdranch.android.driversroute.ui.fragment
 
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentDataEntryBinding
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
-import java.text.SimpleDateFormat
-import java.util.*
 
 class DataEntryFragment() : Fragment() {
 
@@ -74,7 +70,7 @@ class DataEntryFragment() : Fragment() {
 
     private fun onClick(view: View) {
         binding.buttonSaveAddData.setOnClickListener {
-            MediaPlayer.create(requireContext(),R.raw.woomen).start()
+            MediaPlayer.create(requireContext(), R.raw.systems).start()
             sendMessage()
         }
     }

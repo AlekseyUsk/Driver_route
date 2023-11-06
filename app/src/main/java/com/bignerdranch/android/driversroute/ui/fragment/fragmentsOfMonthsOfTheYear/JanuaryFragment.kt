@@ -6,13 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
 import com.bignerdranch.android.driversroute.databinding.FragmentJanuaryBinding
+import com.bignerdranch.android.driversroute.repository.Repository
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
+import kotlinx.coroutines.launch
 
 
 class JanuaryFragment : Fragment() {
+
+    private val repository = Repository()
 
     private lateinit var binding: FragmentJanuaryBinding
     private val viewModel: MainViewModel by activityViewModels()
@@ -30,20 +35,29 @@ class JanuaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.mvCurrentDate.toInt()
         viewModel.setTripModelRoute()
         init()
-      //  addACard()
+        addACard()
+        extractionRoom()
     }
 
-//    private fun addACard() {
-//        viewModel.myLiveData.observe(viewLifecycleOwner) {
-//            if (viewModel.mvCurrentDate.toInt() == JANUARY) {
-//                viewModel.writeANewCard(it)
-//                adapter.submitList(viewModel.myList)
-//            }
-//        }
-//    }
+    private fun extractionRoom() {
+        viewModel.viewModelScope.launch {
+            repository.getJanuaryRoomRoute().observe(viewLifecycleOwner) {
+                viewModel.convertingJanuary(it).let {
+                    adapter.submitList(it)
+                }
+            }
+        }
+    }
+
+    private fun addACard() {
+        viewModel.myLiveData.observe(viewLifecycleOwner) { tripModel ->
+            if (tripModel.turnoutMonth == JANUARY_STR) {
+                viewModel.writeANewCard(tripModel)
+            }
+        }
+    }
 
     private fun init() = with(binding) {
         rvJanuary.layoutManager = LinearLayoutManager(activity)
@@ -55,5 +69,6 @@ class JanuaryFragment : Fragment() {
         @JvmStatic
         fun newInstance() = JanuaryFragment()
         const val JANUARY = 1
+        const val JANUARY_STR = "январь"
     }
 }

@@ -36,24 +36,29 @@ class OctoberFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.mvCurrentDate.toInt()
         viewModel.setTripModelRoute()
         init()
-       // addACard()
+        addACard()
+        extractionRoom()
     }
 
-//    private fun addACard() {
-//        viewModel.viewModelScope.launch {
-//            repository.getOctoberRoomRoute().observe(viewLifecycleOwner) {
-//                viewModel.convertingSavedDataFromATableToTripModel(it).let {
-//                    viewModel.myLiveData.observe(viewLifecycleOwner) { tripModel ->
-//                        viewModel.writeANewCard(tripModel)
-//                        adapter.submitList(it)
-//                    }
-//                }
-//            }
-//        }
-//    }
+    private fun extractionRoom() {
+        viewModel.viewModelScope.launch {
+            repository.getOctoberRoomRoute().observe(viewLifecycleOwner) {
+                viewModel.convertingOctober(it).let {
+                    adapter.submitList(it)
+                }
+            }
+        }
+    }
+
+    private fun addACard() {
+        viewModel.myLiveData.observe(viewLifecycleOwner) { tripModel ->
+            if (tripModel.turnoutMonth == OCTOBER_STR) {
+                viewModel.writeANewCard(tripModel)
+            }
+        }
+    }
 
     private fun init() = with(binding) {
         rvOctober.layoutManager = LinearLayoutManager(activity)
@@ -65,6 +70,6 @@ class OctoberFragment : Fragment() {
         @JvmStatic
         fun newInstance() = OctoberFragment()
         const val OCTOBER = 10
-        const val OCTOBER_STR = "октябрь" //думаю как использовать
+        const val OCTOBER_STR = "октябрь"
     }
 }

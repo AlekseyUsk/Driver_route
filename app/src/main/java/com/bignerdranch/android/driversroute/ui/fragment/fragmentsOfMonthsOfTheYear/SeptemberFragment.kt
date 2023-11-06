@@ -34,29 +34,31 @@ class SeptemberFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.mvCurrentDate.toInt()
         viewModel.setTripModelRoute()
         init()
-      //  addACard()
+        addACard()
+        extractionRoom()
     }
 
-//    private fun addACard(){
-//        viewModel.myLiveData.observe(viewLifecycleOwner) {
-//            if (viewModel.mvCurrentDate.toInt() == SEPTEMBER) {
-//                viewModel.viewModelScope.launch {
-//                    repository.getRoomRoute().observe(viewLifecycleOwner) {
-//                        viewModel.convertingSavedDataFromATableToTripModel(it).let {
-//                            adapter.submitList(it)
-//                        }
-//                    }
-//                }
-//                viewModel.writeANewCard(it)
-//                adapter.submitList(viewModel.myList)
-//            }
-//        }
-//    }
+    private fun extractionRoom() {
+        viewModel.viewModelScope.launch {
+            repository.getSeptemberRoomRoute().observe(viewLifecycleOwner) {
+                viewModel.convertingSeptember(it).let {
+                    adapter.submitList(it)
+                }
+            }
+        }
+    }
 
-    private fun init() = with(binding){
+    private fun addACard() {
+        viewModel.myLiveData.observe(viewLifecycleOwner) { tripModel ->
+            if (tripModel.turnoutMonth == SEPTEMBER_STR) {
+                viewModel.writeANewCard(tripModel)
+            }
+        }
+    }
+
+    private fun init() = with(binding) {
         rvSeptember.layoutManager = LinearLayoutManager(activity)
         adapter = AdapterRV()
         rvSeptember.adapter = adapter
@@ -66,5 +68,6 @@ class SeptemberFragment : Fragment() {
         @JvmStatic
         fun newInstance() = SeptemberFragment()
         const val SEPTEMBER = 9
+        const val SEPTEMBER_STR = "сентябрь"
     }
 }
