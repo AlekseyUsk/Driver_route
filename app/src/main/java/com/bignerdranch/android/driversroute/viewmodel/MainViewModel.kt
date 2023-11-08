@@ -46,8 +46,8 @@ class MainViewModel() : ViewModel() {
     private var setListApril = mutableSetOf<TripModel>()
     private var listApril = mutableListOf<TripModel>()
 
-    private var setListDecember = mutableSetOf<TripModel>()
-    private var listDecember = mutableListOf<TripModel>()
+     var setListDecember = mutableSetOf<TripModel>()
+     var listDecember = mutableListOf<TripModel>()
 
     private var setListFebruary = mutableSetOf<TripModel>()
     private var listFebruary = mutableListOf<TripModel>()

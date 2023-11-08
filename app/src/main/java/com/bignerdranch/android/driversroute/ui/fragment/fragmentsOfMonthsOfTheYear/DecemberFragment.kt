@@ -41,6 +41,9 @@ class DecemberFragment : Fragment() {
         init()
         addACard()
         extractionRoom()
+        viewModel.viewModelScope.launch {
+            repository.cardDeletion()
+        }
     }
 
     private fun extractionRoom() {

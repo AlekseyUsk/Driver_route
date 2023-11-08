@@ -59,4 +59,8 @@ class Repository() : RepositoryRoom {
     override suspend fun getMayRoomRoute(): LiveData<List<RouteEntity>> {
         return super.getMayRoomRoute()
     }
+
+    override suspend fun cardDeletion() {
+        super.cardDeletion()
+    }
 }

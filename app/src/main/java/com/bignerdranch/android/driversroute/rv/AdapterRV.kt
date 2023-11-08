@@ -2,7 +2,9 @@ package com.bignerdranch.android.driversroute
 
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +28,12 @@ class AdapterRV : ListAdapter<TripModel, AdapterRV.Holder>(Comparator()) {
             finalHoursItem.text = item.finalHours
             turnoutItem.text = item.turnoutMonth
         }
+
+        fun clickListener() {
+            binding.root.setOnClickListener {
+                Toast.makeText(binding.root.context, "НАЖАЛЛЛ", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     class Comparator : DiffUtil.ItemCallback<TripModel>() {
@@ -46,5 +54,6 @@ class AdapterRV : ListAdapter<TripModel, AdapterRV.Holder>(Comparator()) {
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.bind(getItem(position))
+        holder.clickListener()
     }
 }

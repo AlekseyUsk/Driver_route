@@ -34,5 +34,7 @@ interface RepositoryRoom {
 
     suspend fun getMayRoomRoute() = MyApp.getRouteDataBase().routeDao().getMay("май")
 
+    suspend fun cardDeletion() = MyApp.getRouteDataBase().routeDao().deleteCard("декабрь")
+
 
 }
