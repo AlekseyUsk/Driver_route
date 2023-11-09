@@ -1,20 +1,17 @@
 package com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
-import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
-import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentDecemberBinding
-import com.bignerdranch.android.driversroute.databinding.FragmentNovemberBinding
 import com.bignerdranch.android.driversroute.repository.Repository
+import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 
 
@@ -42,7 +39,7 @@ class DecemberFragment : Fragment() {
         addACard()
         extractionRoom()
         viewModel.viewModelScope.launch {
-            repository.cardDeletion()
+           // repository.cardDeletion() //FIX ME пробовал удалять из бд декабрь только перезагружай аппп игаче несрабает
         }
     }
 

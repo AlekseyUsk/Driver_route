@@ -52,7 +52,10 @@ interface RouteDao {
 //    suspend fun update(list: List<RouteEntity>)
 
     @Query("DELETE FROM route_entity_table WHERE current_month_route == :dec")
-    suspend fun deleteCard(dec: String)
+    suspend fun deleteCard(dec: String) //удалял декабрь
+
+//    @Query("DELETE FROM route_entity_table WHERE em_route == :dec")
+//    suspend fun deleteCard(dec: String)
 
 }
 //onConflict = OnConflictStrategy.REPLACE в инсерт вставишь
