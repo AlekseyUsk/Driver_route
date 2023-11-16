@@ -1,7 +1,7 @@
-package com.bignerdranch.android.driversroute.repository
+package com.bignerdranch.android.driversroute.repository.room
 
 import com.bignerdranch.android.driversroute.MyApp
-import com.bignerdranch.android.driversroute.room.RouteEntity
+import com.bignerdranch.android.driversroute.repository.room.RouteEntity
 
 interface RepositoryRoom {
 

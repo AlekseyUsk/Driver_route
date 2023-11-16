@@ -18,20 +18,20 @@
         <item>декабрь</item>
     </string-array>
 
-        <string-array name="route">
-            <item>Инская-Барабинск</item>
-            <item>Инская-Московка</item>
-            <item>Инская-Тайга</item>
-            <item>Инская-Мариинск</item>
-            <item>Инская-Белово</item>
-            <item>Инская-Черепаново</item>
-            <item>Инская-Обь</item>
-            <item>Инская-Чулымская</item>
-            <item>Инская-Изынский</item>
-            <item>Инская-Тогучин</item>
-            <item>Инская-Новосибирск Главный</item>
-            <item>Инская-Промышленная</item>
-        </string-array>
+    <string-array name="route">
+        <item>Инская-Барабинск</item>
+        <item>Инская-Московка</item>
+        <item>Инская-Тайга</item>
+        <item>Инская-Мариинск</item>
+        <item>Инская-Белово</item>
+        <item>Инская-Черепаново</item>
+        <item>Инская-Обь</item>
+        <item>Инская-Чулымская</item>
+        <item>Инская-Изынский</item>
+        <item>Инская-Тогучин</item>
+        <item>Инская-Новосибирск Главный</item>
+        <item>Инская-Промышленная</item>
+    </string-array>
 
     <string-array name="assistant">
         <item>Гольцгайзер Д.C</item>

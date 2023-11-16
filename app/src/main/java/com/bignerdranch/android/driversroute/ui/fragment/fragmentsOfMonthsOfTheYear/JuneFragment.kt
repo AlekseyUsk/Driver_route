@@ -1,6 +1,5 @@
 package com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear
 
-import android.bluetooth.BluetoothClass.Device.Major
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,10 +9,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
-import com.bignerdranch.android.driversroute.R
-import com.bignerdranch.android.driversroute.databinding.FragmentAprilBinding
 import com.bignerdranch.android.driversroute.databinding.FragmentJuneBinding
-import com.bignerdranch.android.driversroute.repository.Repository
+import com.bignerdranch.android.driversroute.repository.room.Repository
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 

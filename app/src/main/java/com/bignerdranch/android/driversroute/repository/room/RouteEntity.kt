@@ -1,4 +1,4 @@
-package com.bignerdranch.android.driversroute.room
+package com.bignerdranch.android.driversroute.repository.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

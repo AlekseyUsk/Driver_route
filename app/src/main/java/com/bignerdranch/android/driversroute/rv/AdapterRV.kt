@@ -4,20 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bignerdranch.android.driversroute.databinding.ItemCardTripBinding
 import com.bignerdranch.android.driversroute.model.TripModel
-import com.bignerdranch.android.driversroute.repository.Repository
-import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
-import kotlinx.coroutines.launch
 
 class AdapterRV : ListAdapter<TripModel, AdapterRV.Holder>(Comparator()) {
-
-//    lateinit var repository: Repository
-//    lateinit var viewModel: MainViewModel
 
    inner class Holder(view: View) : RecyclerView.ViewHolder(view) {
 

@@ -10,7 +10,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
 import com.bignerdranch.android.driversroute.databinding.FragmentDecemberBinding
-import com.bignerdranch.android.driversroute.repository.Repository
+import com.bignerdranch.android.driversroute.repository.room.Repository
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 

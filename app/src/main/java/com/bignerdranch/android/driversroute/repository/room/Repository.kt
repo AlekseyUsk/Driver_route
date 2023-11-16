@@ -1,7 +1,6 @@
-package com.bignerdranch.android.driversroute.repository
+package com.bignerdranch.android.driversroute.repository.room
 
 import androidx.lifecycle.LiveData
-import com.bignerdranch.android.driversroute.room.RouteEntity
 
 class Repository() : RepositoryRoom {
     override suspend fun addRoomRoute(routeEntity: RouteEntity) {
