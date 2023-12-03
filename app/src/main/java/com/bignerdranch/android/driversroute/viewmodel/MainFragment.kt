@@ -7,18 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
-import com.bignerdranch.android.driversroute.MyApp
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentMainBinding
-import com.bignerdranch.android.driversroute.repository.Repository
-import com.bignerdranch.android.driversroute.repository.RepositoryRoom
-import com.bignerdranch.android.driversroute.room.RouteEntity
 import com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear.*
 import com.bignerdranch.android.driversroute.viewpager2.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 

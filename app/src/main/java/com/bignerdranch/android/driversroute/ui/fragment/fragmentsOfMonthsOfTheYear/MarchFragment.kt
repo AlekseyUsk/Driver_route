@@ -9,11 +9,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.driversroute.AdapterRV
-import com.bignerdranch.android.driversroute.R
-import com.bignerdranch.android.driversroute.databinding.FragmentAgostoBinding
-import com.bignerdranch.android.driversroute.databinding.FragmentFebruaryBinding
 import com.bignerdranch.android.driversroute.databinding.FragmentMarchBinding
-import com.bignerdranch.android.driversroute.repository.Repository
+import com.bignerdranch.android.driversroute.repository.room.Repository
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 

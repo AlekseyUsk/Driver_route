@@ -3,6 +3,7 @@ package com.bignerdranch.android.driversroute
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,7 @@ import com.bignerdranch.android.driversroute.model.TripModel
 
 class AdapterRV : ListAdapter<TripModel, AdapterRV.Holder>(Comparator()) {
 
-    class Holder(view: View) : RecyclerView.ViewHolder(view) {
+   inner class Holder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val binding = ItemCardTripBinding.bind(view)
 
@@ -25,6 +26,15 @@ class AdapterRV : ListAdapter<TripModel, AdapterRV.Holder>(Comparator()) {
             workingHoursPerTripItem.text = item.working
             finalHoursItem.text = item.finalHours
             turnoutItem.text = item.turnoutMonth
+        }
+
+        fun clickListener(position: Int){
+            binding.root.setOnClickListener {
+               var position = layoutPosition
+                if (position == layoutPosition){
+                    Toast.makeText(binding.root.context, "НАЖАТА КАРТОЧКА ПО ПОЗИЦИИ - ${position}", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -46,5 +56,6 @@ class AdapterRV : ListAdapter<TripModel, AdapterRV.Holder>(Comparator()) {
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.bind(getItem(position))
+        holder.clickListener(position)
     }
 }

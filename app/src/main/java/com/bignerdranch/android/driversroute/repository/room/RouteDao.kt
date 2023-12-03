@@ -1,4 +1,4 @@
-package com.bignerdranch.android.driversroute.room
+package com.bignerdranch.android.driversroute.repository.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -48,13 +48,17 @@ interface RouteDao {
     @Query("SELECT * FROM route_entity_table WHERE current_month_route == :may")
     fun getMay(may: String): LiveData<List<RouteEntity>>
 
-    @Update
-    suspend fun update(list: List<RouteEntity>)
+//    @Update
+//    suspend fun update(list: List<RouteEntity>)
 
-    @Delete
-    suspend fun delete(routeEntity: RouteEntity)
+    @Query("DELETE FROM route_entity_table WHERE current_month_route == :dec")
+    suspend fun deleteCard(dec: String) //удалял декабрь
+
+//    @Query("DELETE FROM route_entity_table WHERE em_route == :dec")
+//    suspend fun deleteCard(dec: String)
 
 }
 //onConflict = OnConflictStrategy.REPLACE в инсерт вставишь
 //"SELECT * FROM route_entity_table WHERE current_month_route == :nov" запрос по месяцам
 //SELECT * FROM route_entity_table WHERE current_month_route LIKE :nov
+//"DELETE * FROM route_entity_table WHERE em_route == :em" удаление по одному столбцу поиск

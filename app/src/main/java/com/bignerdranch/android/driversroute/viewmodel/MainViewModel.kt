@@ -4,8 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bignerdranch.android.driversroute.model.TripModel
-import com.bignerdranch.android.driversroute.repository.Repository
-import com.bignerdranch.android.driversroute.room.RouteEntity
+import com.bignerdranch.android.driversroute.repository.firebase.MFireBase
+import com.bignerdranch.android.driversroute.repository.room.Repository
+import com.bignerdranch.android.driversroute.repository.room.RouteEntity
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -14,6 +15,7 @@ class MainViewModel() : ViewModel() {
 
     //region Поля
     private val repository = Repository()
+    private var mFireBase = MFireBase()
 
     private val mvSdf = SimpleDateFormat("M")
     val mvCurrentDate: String = mvSdf.format(Date())
@@ -72,9 +74,14 @@ class MainViewModel() : ViewModel() {
 
 //endregion
 
+    //отправка в FireBase
+    private fun sendInFairBase(tripModel: TripModel){
+        mFireBase.addFireBaseDataBase(tripModel)
+    }
+
     /**пользователь ввел данные,в setTripModelRoute()->LiveData наблюдает за изменениями и
     введеные данные пользователем обновляют карточку и добавляют ее в список */
-    fun writeANewCard(item: TripModel){
+    fun writeANewCard(item: TripModel) {
         val itemUpdate = TripModel(
             date = item.date,
             time = item.time,
@@ -108,6 +115,7 @@ class MainViewModel() : ViewModel() {
             turnoutMonth = "${getMonth.value}"
         )
         myLiveData.value = itemStart
+        sendInFairBase(itemStart)
     }
 
     //region КОНВЕРТЕРЫ

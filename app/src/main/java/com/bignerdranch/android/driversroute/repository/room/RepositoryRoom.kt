@@ -1,7 +1,7 @@
-package com.bignerdranch.android.driversroute.repository
+package com.bignerdranch.android.driversroute.repository.room
 
 import com.bignerdranch.android.driversroute.MyApp
-import com.bignerdranch.android.driversroute.room.RouteEntity
+import com.bignerdranch.android.driversroute.repository.room.RouteEntity
 
 interface RepositoryRoom {
 
@@ -33,6 +33,8 @@ interface RepositoryRoom {
     suspend fun getMarchRoomRoute() = MyApp.getRouteDataBase().routeDao().getMarch("март")
 
     suspend fun getMayRoomRoute() = MyApp.getRouteDataBase().routeDao().getMay("май")
+
+    suspend fun cardDeletion() = MyApp.getRouteDataBase().routeDao().deleteCard("декабрь")
 
 
 }
