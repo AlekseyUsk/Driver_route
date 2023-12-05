@@ -61,10 +61,22 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        toolbarMenu()
         currentDateTime()
         onClick()
         init()
         monitoringOfTheReceivedData()
+    }
+
+    private fun toolbarMenu() {
+        binding.toolbar.apply {
+            setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
+            title = "EXIT"
+
+            setNavigationOnClickListener {
+                requireActivity().finish()
+            }
+        }
     }
 
     private fun init() = with(binding) {
