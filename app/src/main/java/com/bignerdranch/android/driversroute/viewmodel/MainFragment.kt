@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
@@ -69,13 +70,24 @@ class MainFragment : Fragment() {
     }
 
     private fun toolbarMenu() {
+        //меню раздул в toolbar
+        binding.toolbar.apply {
+            inflateMenu(R.menu.menu)
+        }
         binding.toolbar.apply {
             setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
             title = "EXIT"
 
+            //стрелка навигации HOME
             setNavigationOnClickListener {
                 requireActivity().finish()
             }
+        }
+        binding.toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.menuFb -> Toast.makeText(requireActivity(), "НАЖАЛ", Toast.LENGTH_LONG).show()
+            }
+            true
         }
     }
 
