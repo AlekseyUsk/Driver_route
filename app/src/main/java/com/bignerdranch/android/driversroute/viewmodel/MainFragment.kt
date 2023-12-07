@@ -1,18 +1,29 @@
 package com.bignerdranch.android.driversroute.viewmodel
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupWithNavController
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentMainBinding
+import com.bignerdranch.android.driversroute.repository.firebase.FireBaseInfoFragment
 import com.bignerdranch.android.driversroute.ui.fragment.fragmentsOfMonthsOfTheYear.*
 import com.bignerdranch.android.driversroute.viewpager2.ViewPagerAdapter
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.internal.NavigationMenuView
 import com.google.android.material.tabs.TabLayoutMediator
 import java.text.SimpleDateFormat
 import java.util.*
@@ -62,33 +73,44 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        toolbarMenu()
         currentDateTime()
         onClick()
         init()
         monitoringOfTheReceivedData()
+
+
+        toolbarMenuWithNavigation() //toolbar в связке с navigation
+        setHasOptionsMenu(true) //добавляет панель меню в toolbar 2
     }
 
-    private fun toolbarMenu() {
-        //меню раздул в toolbar
-        binding.toolbar.apply {
-            inflateMenu(R.menu.menu)
-        }
-        binding.toolbar.apply {
-            setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
-            title = "EXIT"
+    //добавляет панель меню в toolbar 1
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        requireActivity().menuInflater.inflate(R.menu.menu, menu)
+       return super.onCreateOptionsMenu(menu,inflater)
+    }
+    //реакция на клики меню toolbar 3
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val navController = requireActivity().findNavController(R.id.nav_host_fragment)
+        return item.onNavDestinationSelected(navController)
+                || super.onOptionsItemSelected(item)
+    }
 
-            //стрелка навигации HOME
-            setNavigationOnClickListener {
-                requireActivity().finish()
-            }
-        }
-        binding.toolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.menuFb -> Toast.makeText(requireActivity(), "НАЖАЛ", Toast.LENGTH_LONG).show()
-            }
-            true
-        }
+    private fun toolbarMenuWithNavigation() {
+        //добавил toolbar
+        val toolbar = binding.toolbar
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+        toolbar.setTitle(R.string.title_app)
+
+        //получаем ссылку на котролер навигации из хоста
+        var navHostFragment = requireActivity().supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        //связываем панель инструментов с графои навигации
+        val builder = AppBarConfiguration.Builder(navController.graph)
+        val appBarConfiguration = builder.build()
+        //применяет конфигурацию к панели инструментов
+        toolbar.setupWithNavController(navController, appBarConfiguration)
     }
 
     private fun init() = with(binding) {
