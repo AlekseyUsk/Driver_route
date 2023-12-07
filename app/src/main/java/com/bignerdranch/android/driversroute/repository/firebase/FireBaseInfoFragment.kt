@@ -6,16 +6,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bignerdranch.android.driversroute.AdapterRV
 import com.bignerdranch.android.driversroute.R
 import com.bignerdranch.android.driversroute.databinding.FragmentFireBaseInfoBinding
 import com.bignerdranch.android.driversroute.databinding.FragmentMainBinding
+import com.bignerdranch.android.driversroute.model.TripModel
+import com.bignerdranch.android.driversroute.repository.room.Repository
+import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
+import kotlinx.coroutines.launch
 
 class FireBaseInfoFragment : Fragment() {
 
+    private val repository = Repository()
+    private val viewModel: MainViewModel by activityViewModels()
+
     private lateinit var binding: FragmentFireBaseInfoBinding
+    private lateinit var adapterFB : AdapterRV
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +40,18 @@ class FireBaseInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initRecyclerViewDownloadingDataFromFairBase()
         toolbarMenuWithNavigation()
+    }
+
+    private fun initRecyclerViewDownloadingDataFromFairBase() = with(binding) {
+        recyclerViewFairBaseList.layoutManager = LinearLayoutManager(activity)
+        adapterFB = AdapterRV()
+        recyclerViewFairBaseList.adapter = adapterFB
+        var myListFb = mutableListOf<TripModel>()
+
+      //  adapterFB.submitList(viewModel.myList) тестил работает
+
     }
 
     private fun toolbarMenuWithNavigation() {
