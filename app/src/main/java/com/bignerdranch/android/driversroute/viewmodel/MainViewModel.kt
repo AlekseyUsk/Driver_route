@@ -1,5 +1,7 @@
 package com.bignerdranch.android.driversroute.viewmodel
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,6 +9,9 @@ import com.bignerdranch.android.driversroute.model.TripModel
 import com.bignerdranch.android.driversroute.repository.firebase.MFireBase
 import com.bignerdranch.android.driversroute.repository.room.Repository
 import com.bignerdranch.android.driversroute.repository.room.RouteEntity
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -75,8 +80,23 @@ class MainViewModel() : ViewModel() {
 //endregion
 
     //отправка в FireBase
-    private fun sendInFairBase(tripModel: TripModel){
+    private fun sendInFairBase(tripModel: TripModel) {
         mFireBase.addFireBaseDataBase(tripModel)
+    }
+
+    //получение из FireBase
+    private fun getDataFromFairBase() {
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+    // Ошибка получения сообщения, запишите сообщение
+                Log.d(TAG, "loadPost:onCancelled ошибка", error.toException())
+            }
+
+        }
     }
 
     /**пользователь ввел данные,в setTripModelRoute()->LiveData наблюдает за изменениями и

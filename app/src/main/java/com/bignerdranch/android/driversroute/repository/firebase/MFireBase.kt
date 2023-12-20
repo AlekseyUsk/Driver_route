@@ -3,18 +3,21 @@ package com.bignerdranch.android.driversroute.repository.firebase
 import com.bignerdranch.android.driversroute.DATA_BASE_FB
 import com.bignerdranch.android.driversroute.model.TripModel
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
-class MFireBase(){
+class MFireBase() {
 
-   private var dataBaseFireBase : FirebaseDatabase = FirebaseDatabase.getInstance()
+    private val database = Firebase.database
 
     fun addFireBaseDataBase(tripModel: TripModel) {
-        dataBaseFireBase.getReference().push().setValue(tripModel)
-        dataBaseFireBase.getReference(DATA_BASE_FB)
+        val dataBaseFireBase = database.getReference(DATA_BASE_FB)
+        dataBaseFireBase.push().setValue(tripModel)
+
     }
 
-    fun initFireBase() {
-        dataBaseFireBase.getReference(DATA_BASE_FB)
+    fun onChangeListener(databaseReference: DatabaseReference) {
+        //    databaseReference.addValueEventListener()
     }
 }
+

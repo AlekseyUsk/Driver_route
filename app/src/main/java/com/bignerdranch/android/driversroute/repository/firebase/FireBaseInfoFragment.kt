@@ -19,11 +19,12 @@ import com.bignerdranch.android.driversroute.databinding.FragmentMainBinding
 import com.bignerdranch.android.driversroute.model.TripModel
 import com.bignerdranch.android.driversroute.repository.room.Repository
 import com.bignerdranch.android.driversroute.viewmodel.MainViewModel
+import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.launch
 
 class FireBaseInfoFragment : Fragment() {
 
-    private val repository = Repository()
+//    private val repository = Repository()
     private val viewModel: MainViewModel by activityViewModels()
 
     private lateinit var binding: FragmentFireBaseInfoBinding
@@ -48,9 +49,10 @@ class FireBaseInfoFragment : Fragment() {
         recyclerViewFairBaseList.layoutManager = LinearLayoutManager(activity)
         adapterFB = AdapterRV()
         recyclerViewFairBaseList.adapter = adapterFB
+
         var myListFb = mutableListOf<TripModel>()
 
-      //  adapterFB.submitList(viewModel.myList) тестил работает
+        adapterFB.submitList(viewModel.myList) //тестил работает
 
     }
 
@@ -71,4 +73,8 @@ class FireBaseInfoFragment : Fragment() {
         //применяет конфигурацию к панели инструментов
         toolbar.setupWithNavController(navController, appBarConfiguration)
     }
+
+
+
+
 }
