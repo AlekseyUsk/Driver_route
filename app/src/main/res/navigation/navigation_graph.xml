@@ -9,54 +9,59 @@
         android:id="@+id/mainFragment"
         android:name="com.bignerdranch.android.driversroute.viewmodel.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_dataEntryFragment"
             app:destination="@id/dataEntryFragment" />
         <argument
             android:name="receivedDate"
-            app:argType="string"
-            android:defaultValue='' />
+            android:defaultValue=''
+            app:argType="string" />
         <argument
             android:name="receivedAssistant"
-            app:argType="string"
-            android:defaultValue="" />
+            android:defaultValue=""
+            app:argType="string" />
         <argument
             android:name="receivedTime"
-            app:argType="string"
-            android:defaultValue=""/>
+            android:defaultValue=""
+            app:argType="string" />
         <argument
             android:name="receivedRoute"
-            app:argType="string"
-            android:defaultValue=""/>
+            android:defaultValue=""
+            app:argType="string" />
         <argument
             android:name="receivedEm"
-            app:argType="string"
-            android:defaultValue=""/>
+            android:defaultValue=""
+            app:argType="string" />
         <argument
             android:name="receivedEndOfWork"
-            app:argType="string"
-            android:defaultValue=""/>
+            android:defaultValue=""
+            app:argType="string" />
         <argument
             android:name="receivedWorking"
-            app:argType="string"
-            android:defaultValue=""/>
+            android:defaultValue=""
+            app:argType="string" />
         <argument
             android:name="receivedFinalHours"
-            app:argType="string"
-            android:defaultValue=""/>
+            android:defaultValue=""
+            app:argType="string" />
         <argument
             android:name="receivedMonth"
-            app:argType="string"
-            android:defaultValue=""/>
+            android:defaultValue=""
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/dataEntryFragment"
         android:name="com.bignerdranch.android.driversroute.ui.fragment.DataEntryFragment"
         android:label="fragment_data_entry"
-        tools:layout="@layout/fragment_data_entry" >
+        tools:layout="@layout/fragment_data_entry">
         <action
             android:id="@+id/action_dataEntryFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/fireBaseInfoFragment"
+        android:name="com.bignerdranch.android.driversroute.repository.firebase.FireBaseInfoFragment"
+        android:label="FireBase"
+        tools:layout="@layout/fragment_fire_base_info" />
 </navigation>
