@@ -11,6 +11,7 @@ import com.bignerdranch.android.driversroute.repository.room.Repository
 import com.bignerdranch.android.driversroute.repository.room.RouteEntity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -85,19 +86,10 @@ class MainViewModel() : ViewModel() {
     }
 
     //получение из FireBase
-    private fun getDataFromFairBase() {
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
+//    fun getDataFromFairBase() {
+//       mFireBase.onChangeListener()
+//    }
 
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-    // Ошибка получения сообщения, запишите сообщение
-                Log.d(TAG, "loadPost:onCancelled ошибка", error.toException())
-            }
-
-        }
-    }
 
     /**пользователь ввел данные,в setTripModelRoute()->LiveData наблюдает за изменениями и
     введеные данные пользователем обновляют карточку и добавляют ее в список */
